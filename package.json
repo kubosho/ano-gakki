@@ -1,6 +1,5 @@
 {
   "devDependencies": {
-    "6to5": "^1.14.0",
     "karma": "^0.12.23",
     "karma-chrome-launcher": "^0.1.5",
     "karma-mocha": "^0.1.9",
@@ -10,8 +9,7 @@
     "jade": "^1.7.0"
   },
   "scripts": {
-    "setup": "npm install && bower install",
-    "6to5": "6to5 ./src/lib/diagram/circle.js"
+    "setup": "npm install && bower install"
   },
   "private": true
 }
