@@ -1,0 +1,26 @@
+{
+  "name": "ore-no-boilerplate",
+  "version": "0.0.1",
+  "homepage": "https://github.com/kubosho/ore-no-boilerplate",
+  "authors": [
+    "kubosho_"
+  ],
+  "description": "Boilerplate that contain styles and Karma+Mocha+power-assert for WebStorm.",
+  "keywords": [
+    "boilerplate"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "power-assert": "~0.8.0"
+  },
+  "dependencies": {
+    "modularized-normalize-scss": "~3.0.1"
+  }
+}
