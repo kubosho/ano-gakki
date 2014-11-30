@@ -1,4 +1,5 @@
 {
+  "name": "Ano Gakki",
   "version": "0.0.1",
   "authors": [
     "kubosho_"
@@ -11,10 +12,10 @@
     "test",
     "tests"
   ],
-  "devDependencies": {
-    "power-assert": "~0.8.0"
-  },
   "dependencies": {
     "modularized-normalize-scss": "~3.0.1"
+  },
+  "devDependencies": {
+    "power-assert": "~0.10.0"
   }
 }
