@@ -1,22 +1,27 @@
 module.exports = function (config) {
   config.set({
-    basePath: '',
-    frameworks: ['mocha'],
+    basePath: "",
+    frameworks: [
+      "mocha",
+      "browserify"
+    ],
     files: [
-      './bower_components/power-assert/build/power-assert.js',
-      './test/scripts/espower/*.js',
-      './src/*.js',
+      "./test/scripts/**/*.js"
     ],
-    exclude: [
-    ],
-    preprocessors: {
+    exclude: [],
+    browserify: {
+      debug: true,
+      transform: ["espowerify"]
     },
-    reporters: ['progress'],
+    preprocessors: {
+      "./test/**/*.js":"browserify"
+    },
+    reporters: ["progress"],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
-    autoWatch: false,
-    browsers: ['Chrome'],
+    autoWatch: true,
+    browsers: ["Chrome"],
     singleRun: false
   });
 };

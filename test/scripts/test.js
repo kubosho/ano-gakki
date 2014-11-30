@@ -1,32 +1,39 @@
-/*global describe, before, it, assert */
-describe('Sounds', function () {
-  describe('#add()', function () {
-    it('should be return 5', function () {
-      assert(math.add(3, 2) === 5);
+/*global Sounds, describe, before, it */
+var assert = require('power-assert');
+var sounds = require('../../build/sounds').Sounds;
+
+describe("Sounds", function() {
+  before(function() {
+    sounds = Object.create(sounds.prototype);
+  });
+
+  describe("#a()", function() {
+    it("should be frequency is 880Hz", function() {
+      assert(sounds.a(5) === 880);
     });
   });
 
-  describe('#sub()', function () {
-    it('should be return 1', function () {
-      assert(math.sub(3, 2) === 1);
+  describe("#b()", function() {
+    it("should be frequency is 987.8Hz", function() {
+      assert(sounds.b(5) === 987.8);
     });
   });
 
-  describe('#multi()', function () {
-    it('should be return 6', function () {
-      assert(math.multi(3, 2) === 6);
+  describe("#d()", function() {
+    it("should be frequency is 587.3Hz", function() {
+      assert(sounds.d(5) === 587.3);
     });
   });
 
-  describe('#div()', function () {
-    it('should be return 1.5', function () {
-      assert(math.div(3, 2) === 1.5);
+  describe("#e()", function() {
+    it("should be frequency is 659.3Hz", function() {
+      assert(sounds.e(5) === 659.3);
     });
   });
 
-  describe('#remainder()', function () {
-    it('should be return 1', function () {
-      assert(math.remainder(3, 2) === 1);
+  describe("#g()", function() {
+    it("should be frequency is 784Hz", function() {
+      assert(sounds.g(5) === 784);
     });
   });
 });
