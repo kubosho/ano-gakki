@@ -14,7 +14,11 @@
     "mocha": "^1.21.4"
   },
   "scripts": {
-    "setup": "npm install && bower install"
+    "setup": "npm install && bower install",
+    "test": "./node_modules/karma/bin/karma start --single-run",
+    "clean": "rm -rf ./build/",
+    "compile": "tsc ./src/*.ts --target es5 --outDir ./build/ --module commonjs --removeComments",
+    "build": "browserify ./build/*.js -d -o ./scripts/main.js"
   },
   "private": true
 }
