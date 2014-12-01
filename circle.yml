@@ -9,7 +9,7 @@ checkout:
 
 dependencies:
   pre:
-    - npm install typescript -g
+    - npm run global-setup
 
 test:
   pre:
