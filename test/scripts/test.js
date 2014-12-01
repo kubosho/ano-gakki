@@ -1,5 +1,5 @@
 /*global Sounds, describe, before, it */
-var assert = require('power-assert');
+var assert = require('../../node_modules/power-assert');
 var sounds = require('../../build/sounds').Sounds;
 
 describe("Sounds", function() {
