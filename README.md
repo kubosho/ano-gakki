@@ -5,7 +5,7 @@ Ano Gakki
 [![Code Climate](https://codeclimate.com/github/kubosho/ano-gakki/badges/gpa.svg)](https://codeclimate.com/github/kubosho/ano-gakki)
 [![MIT License](http://img.shields.io/badge/license-MIT-green.svg)](https://github.com/kubosho/ano-gakki/blob/master/LICENSE)
 
-Implement a "Ano Gakki" (That Musical Instrument) for Web Audio API.
+Implement a "Ano Gakki" (That Instrument) for Web Audio API.
 
 Demo
 ----
@@ -20,4 +20,4 @@ MIT License
 Author
 ------
 
-kubosho_
+[kubosho_ (Shota Kubota)](https://github.com/kubosho)
