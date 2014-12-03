@@ -12,6 +12,15 @@ Demo
 
 http://kubosho.github.io/ano-gakki
 
+TODO
+----
+
+- Documant
+- Get note number ("A4" -> 69)
+  - ref: https://github.com/watilde/beeplay/blob/master/src/modules/nn.js
+- Parse note number to frequency (69 -> 440Hz)
+  - ref: https://github.com/watilde/beeplay/blob/master/src/modules/pn.js
+
 License
 -------
 
