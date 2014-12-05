@@ -14,4 +14,3 @@ dependencies:
 test:
   pre:
     - npm run compile
-    - npm run build
