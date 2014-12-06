@@ -20,7 +20,7 @@
     "test": "./node_modules/karma/bin/karma start --single-run",
     "clean": "rm -rf ./build/",
     "compile": "tsc ./src/**/*.ts --outDir ./build/ --target es5 --module commonjs --removeComments",
-    "build": "browserify ./build/*.js -d -o ./scripts/main.js"
+    "build": "browserify ./build/*.js -d -o ./dist/scripts/ano_gakki.js"
   },
   "private": true
 }
