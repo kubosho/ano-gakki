@@ -1,6 +1,6 @@
 /*global describe, before, it */
 var assert = require('../../node_modules/power-assert');
-var sound = require('../../build/sound');
+var sound = require('../../build/lib/sound');
 
 // MEMO:
 // frequency value reference
@@ -10,38 +10,10 @@ describe("Sound", function() {
     sound = new sound();
   });
 
-  describe("#a()", function() {
-    it("should be frequency is 880Hz", function() {
-      var osc = sound.a("5");
+  describe("#oscillator()", function() {
+    it("should be frequency value is 880Hz", function() {
+      var osc = sound.oscillator("A5");
       assert(osc.frequency.value === 880);
-    });
-  });
-
-  describe("#b()", function() {
-    it("should be frequency is 987.766Hz", function() {
-      var osc = sound.b("5");
-      assert(truncateDigits3(osc.frequency.value) === 987.766);
-    });
-  });
-
-  describe("#d()", function() {
-    it("should be frequency is 587.329Hz", function() {
-      var osc = sound.d("5");
-      assert(truncateDigits3(osc.frequency.value) === 587.329);
-    });
-  });
-
-  describe("#e()", function() {
-    it("should be frequency is 659.255Hz", function() {
-      var osc = sound.e("5");
-      assert(truncateDigits3(osc.frequency.value) === 659.255);
-    });
-  });
-
-  describe("#g()", function() {
-    it("should be frequency is 783.99Hz", function() {
-      var osc = sound.g("5");
-      assert(truncateDigits3(osc.frequency.value) === 783.99);
     });
   });
 });
