@@ -19,8 +19,9 @@
     "setup": "npm install && bower install",
     "test": "./node_modules/karma/bin/karma start --single-run",
     "clean": "rm -rf ./build/",
-    "compile": "tsc ./src/**/*.ts --outDir ./build/ --target es5 --module commonjs --removeComments",
-    "build": "browserify ./build/*.js -d -o ./dist/scripts/ano_gakki.js"
+    "compile": "tsc ./src/*.ts --outDir ./build/ --target es5 --module commonjs --removeComments",
+    "browserify": "browserify ./build/*.js -d -o ./dist/scripts/ano_gakki.js",
+    "build": "npm run clean && npm run compile && npm run test && npm run browserify"
   },
   "private": true
 }
