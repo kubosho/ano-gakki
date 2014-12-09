@@ -8,3 +8,5 @@ test/scripts/espower/
 .DS_Store
 tags
 npm-debug.log
+src/**/*.js
+
