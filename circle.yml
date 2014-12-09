@@ -15,3 +15,11 @@ test:
   pre:
     - npm run compile
     - npm run build
+
+general:
+  branches:
+    only:
+      - master
+      - /feat-.*/
+      - /fix-.*/
+
