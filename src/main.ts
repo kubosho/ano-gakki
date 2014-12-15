@@ -1,5 +1,8 @@
 /// <reference path="../DefinitelyTyped/fabricjs/fabricjs.d.ts" />
+
 import Sound = require("./lib/sound");
+import Line = require("./lib/line");
+
 var sound = new Sound();
 
 "use strict";
@@ -14,23 +17,6 @@ function playSound(key: string) {
   }, 200);
 }
 
-class Line {
-  static create(coords: number[]) {
-    return new fabric.Line(coords, {
-      fill: "#51917a",
-      stroke: "#51917a",
-      strokeWidth: 10,
-      selectable: false
-    });
-  }
-
-  static draw(canvas: fabric.IStaticCanvas, coords: number[]): fabric.ILine {
-    var line = Line.create(coords);
-    canvas.add(line);
-    return line;
-  }
-}
-
 function main() {
   var windowW = window.innerWidth,
       windowH = window.innerHeight;
@@ -42,6 +28,7 @@ function main() {
   canvas.setHeight(windowH);
 
   var lines = [
+    // xStart, yStart, xEnd, yEnd
     [0, (windowH / 2), windowW, (windowH / 2)],
     [(windowW / 3.6), 0, (windowW / 3.6), windowH],
     [(windowW / 1.25), 0, (windowW / 10), windowH],
