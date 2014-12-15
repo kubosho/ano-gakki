@@ -1,7 +1,18 @@
 /// <reference path="../DefinitelyTyped/fabricjs/fabricjs.d.ts" />
 import Sound = require("./lib/sound");
+var sound = new Sound();
 
 "use strict";
+
+function playSound(key: string) {
+  var osc = sound.oscillator(key);
+  osc.connect(sound.ctx.destination);
+
+  osc.start(0);
+  setTimeout(() => {
+    osc.stop(0);
+  }, 200);
+}
 
 class Line {
   static create(coords: number[]) {
@@ -38,14 +49,14 @@ function main() {
     [0, (windowH / 4), windowW, (windowH / 4)],
     [(windowW / 1.8), 0, (windowW / 2.8), windowH]
   ];
+  var innocence = ["D5", "E5", "G5", "A5", "B5", "G5"];
 
   document.addEventListener("click", () => {
     if (currentPlayIndex === innocence.length) {
       currentPlayIndex = 0;
     }
 
-    var osc = sound.oscillator(innocence[currentPlayIndex]);
-    osc.connect(sound.ctx.destination);
+    playSound(innocence[currentPlayIndex]);
 
     var line = Line.draw(canvas, lines[currentPlayIndex]);
     (<any>line).animate('opacity', 0, {
@@ -58,4 +69,3 @@ function main() {
 }
 
 document.addEventListener("DOMContentLoaded", main, false);
-
