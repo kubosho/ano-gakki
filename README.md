@@ -12,16 +12,6 @@ Demo
 
 http://kubosho.github.io/ano-gakki
 
-TODO
-----
-
-- Documant
-- Demo
-- ~~Get note number (ex. "A4" -> 69)~~
-    - https://github.com/kubosho/ano-gakki/blob/master/src/lib/convert.ts#L7-L21
-- ~~Parse note number to frequency (ex. 69 -> 440Hz)~~
-    - https://github.com/kubosho/ano-gakki/blob/master/src/lib/convert.ts#L26-L28
-
 License
 -------
 
