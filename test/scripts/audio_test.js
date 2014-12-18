@@ -1,19 +1,20 @@
 /*global describe, before, it */
 var assert = require('../../node_modules/power-assert');
-var sound = require('../../build/lib/sound');
+
+var Audio = require('../../build/lib/audio');
 
 // MEMO:
 // frequency value reference
 // http://www.g200kg.com/jp/docs/tech/notefreq.html
-describe("Sound", function() {
+describe("Audio", function() {
   before(function() {
-    sound = new sound();
+    audio = new Audio();
   });
 
-  describe("#oscillator()", function() {
+  describe("#createSound()", function() {
     it("should be frequency value is 880Hz", function() {
-      var osc = sound.oscillator("A5");
-      assert(osc.frequency.value === 880);
+      var sound = audio.createSound(880);
+      assert(sound.frequency.value === 880);
     });
   });
 });

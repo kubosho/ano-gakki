@@ -1,7 +1,6 @@
 /// <reference path="../../DefinitelyTyped/webaudioapi/waa.d.ts" />
-import convert = require("./convert");
 
-class Sound {
+class Audio {
   ctx: AudioContext;
 
   constructor() {
@@ -9,11 +8,15 @@ class Sound {
     this.ctx = new AudioCtx();
   }
 
-  oscillator(key: string) {
+  createSound(freq: number): OscillatorNode {
     var osc = this.ctx.createOscillator();
-    osc.frequency.value = convert.noteToFreq(convert.keyToNote(key));
+    osc.frequency.value = freq;
     return osc;
+  }
+
+  connectOutput(audio: AudioNode): void {
+    audio.connect(this.ctx.destination);
   }
 }
 
-export = Sound;
+export = Audio;

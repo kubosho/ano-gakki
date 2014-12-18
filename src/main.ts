@@ -1,27 +1,15 @@
 /// <reference path="../DefinitelyTyped/fabricjs/fabricjs.d.ts" />
 
-import Sound = require("./lib/sound");
+import Convert = require("./lib/convert");
+import Audio = require("./lib/Audio");
 import Line = require("./lib/line");
 
-var sound = new Sound();
-
-"use strict";
-
-function playSound(key: string) {
-  var osc = sound.oscillator(key);
-  osc.connect(sound.ctx.destination);
-
-  osc.start(0);
-  setTimeout(() => {
-    osc.stop(0);
-  }, 200);
-}
 
 function main() {
+  "use strict";
+
   var windowW = window.innerWidth,
       windowH = window.innerHeight;
-
-  var currentPlayIndex = 0;
 
   var canvas = new fabric.Canvas("c");
   canvas.setWidth(windowW);
@@ -36,14 +24,25 @@ function main() {
     [0, (windowH / 4), windowW, (windowH / 4)],
     [(windowW / 1.8), 0, (windowW / 2.8), windowH]
   ];
+
+  var audio = new Audio();
   var innocence = ["D5", "E5", "G5", "A5", "B5", "G5"];
+
+  var currentPlayIndex = 0;
 
   document.addEventListener("click", () => {
     if (currentPlayIndex === innocence.length) {
       currentPlayIndex = 0;
     }
 
-    playSound(innocence[currentPlayIndex]);
+    var key = innocence[currentPlayIndex];
+
+    var sound = audio.createSound(Convert.noteToFreq(Convert.keyToNote(key)));
+    sound.connect(audio.ctx.destination);
+    sound.start(0);
+    setTimeout(() => {
+      sound.stop(0);
+    }, 200);
 
     var line = Line.draw(canvas, lines[currentPlayIndex]);
     (<any>line).animate('opacity', 0, {
