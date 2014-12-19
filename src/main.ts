@@ -4,7 +4,6 @@ import Convert = require("./lib/convert");
 import Audio = require("./lib/Audio");
 import Line = require("./lib/line");
 
-
 function main() {
   "use strict";
 
