@@ -3,6 +3,10 @@ class Convert {
    * Copyright (c) 2014 Daijiro Wachi <daijiro.wachi@gmail.com>
    * Released under the MIT license
    * https://github.com/watilde/beeplay/blob/master/src/modules/nn.js
+   *
+   * example:
+   * - "A4" | 69
+   * - "C#5" | 73
    */
   static keyToNote(name: string): number {
     var KEYS = [
@@ -20,9 +24,12 @@ class Convert {
     return KEYS.indexOf(note) + 12 * num;
   }
 
-  // ref:
-  // - http://mohayonao.hatenablog.com/entry/2012/05/25/215159
-  // - http://www.g200kg.com/jp/docs/tech/notefreq.html
+  /* ref:
+   * - http://mohayonao.hatenablog.com/entry/2012/05/25/215159
+   * - http://www.g200kg.com/jp/docs/tech/notefreq.html
+   *
+   * example: 69 | 440
+   */
   static noteToFreq(num: number): number {
     return 440 * Math.pow(Math.pow(2, 1/12), num - 69);
   }
