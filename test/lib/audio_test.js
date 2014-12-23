@@ -1,12 +1,14 @@
 /*global describe, before, it */
 var assert = require('../../node_modules/power-assert');
 
-var Audio = require('../../build/lib/audio');
+var Audio = require('../../dist/lib/audio');
 
 // MEMO:
 // frequency value reference
 // http://www.g200kg.com/jp/docs/tech/notefreq.html
 describe("Audio", function() {
+  var audio = null;
+
   before(function() {
     audio = new Audio();
   });
@@ -25,6 +27,6 @@ describe("Audio", function() {
 //   2.3347827465 -> 2.334
 //   1109.8439532 -> 1109.843
 //   -5.347294791 -> -5.347
-var truncateDigits3 = function (num) {
+var truncateDigits3 = function(num) {
   return parseFloat(num.toString().substring(0, 7));
 };
