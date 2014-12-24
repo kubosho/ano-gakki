@@ -61,13 +61,22 @@ gulp.task("lint", function() {
     .pipe($.jshint.reporter("fail"))
 });
 
-
-//////////////////////////////////////////////////
-
 gulp.task("test", function() {
-  return gulp.src(["./test/all_test.js"], { read: false })
-    .pipe($.mocha({ reporter: "list" }))
+  return gulp.src(["./test/all_test.js"])
+    .pipe($.mocha())
     .on("error", gutil.log);
+});
+
+gulp.task("cover", function(callback) {
+  gulp.src("./src/**/*.js")
+    .pipe($.istanbul())
+    .pipe($.istanbul.hookRequire())
+    .on("finish", function() {
+      return gulp.src(["./test/**/*.js"])
+        .pipe($.mocha())
+        .pipe($.istanbul.writeReports())
+        .on("end", callback);
+    })
 });
 
 //////////////////////////////////////////////////
