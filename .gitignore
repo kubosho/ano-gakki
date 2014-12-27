@@ -2,11 +2,11 @@
 .sass-cache/
 build/
 bower_components/
+coverage/
 node_modules/
-test/scripts/espower/
 
 .DS_Store
 tags
 npm-debug.log
 src/**/*.js
-
+test/all_test.js
