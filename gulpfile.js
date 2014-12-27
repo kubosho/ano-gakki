@@ -11,13 +11,14 @@ var del = require("del");
 var browserSync = require("browser-sync");
 var reload = browserSync.reload;
 
-//////////////////////////////////////////////////
-
 var tsProject = $.typescript.createProject({
   target: "es5",
   removeComments: true,
   sortOutput: true
 });
+
+//////////////////////////////////////////////////
+
 gulp.task("compile", function() {
   gulp.src(["./src/**/*.ts"])
     .pipe($.typescript(tsProject))
@@ -61,10 +62,10 @@ gulp.task("lint", function() {
     .pipe($.jshint.reporter("fail"))
 });
 
-gulp.task("test", function() {
+gulp.task("test", function(callback) {
   return gulp.src(["./test/all_test.js"])
     .pipe($.mocha())
-    .on("error", gutil.log);
+    .on("error", callback);
 });
 
 gulp.task("cover", function(callback) {
@@ -82,4 +83,3 @@ gulp.task("cover", function(callback) {
 //////////////////////////////////////////////////
 
 gulp.task("default", ["compile"]);
-
