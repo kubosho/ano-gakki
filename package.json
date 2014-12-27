@@ -26,10 +26,8 @@
   "scripts": {
     "global-setup": "npm install -g bower typescript",
     "setup": "npm install && bower install",
-    "clean": "rm -rf ./build/",
-    "compile": "tsc ./src/*.ts --outDir ./build/ --target es5 --module commonjs --removeComments",
-    "browserify": "browserify ./build/*.js -d -o ./dist/ano_gakki.js",
-    "build": "npm run clean && npm run compile && npm run test && npm run browserify"
+    "build": "gulp compile && gulp build:sources",
+    "test": "gulp build:tests && gulp test && gulp cover"
   },
   "private": true
 }
