@@ -2,10 +2,6 @@ machine:
   node:
     version: 0.10.33
 
-general:
-  artifacts:
-    - "~/coverage"
-
 checkout:
   post:
     - git submodule sync
@@ -19,7 +15,7 @@ test:
   pre:
     - npm run build
   post:
-    - $CIRCLE_ARTIFACTS
+    - mv coverage $CIRCLE_ARTIFACTS
 
 general:
   branches:
