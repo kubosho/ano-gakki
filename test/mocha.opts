@@ -1,0 +1,3 @@
+--reporter spec
+--require test/lib/bootstrap.js
+--recursive

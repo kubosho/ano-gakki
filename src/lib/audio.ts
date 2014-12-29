@@ -3,9 +3,8 @@
 class Audio {
   ctx: AudioContext;
 
-  constructor() {
-    var AudioCtx = (<any>window).AudioContext || (<any>window).webkitAudioContext;
-    this.ctx = new AudioCtx();
+  constructor(context: AudioContext) {
+    this.ctx = context;
   }
 
   createSound(freq: number): OscillatorNode {

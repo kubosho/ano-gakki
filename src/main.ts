@@ -1,8 +1,8 @@
 /// <reference path="../DefinitelyTyped/fabricjs/fabricjs.d.ts" />
 
-import Convert = require("./lib/convert");
-import Audio = require("./lib/Audio");
-import Line = require("./lib/line");
+import convert = require("./lib/convert");
+import audio = require("./lib/Audio");
+import line = require("./lib/line");
 
 function main() {
   "use strict";
@@ -24,32 +24,9 @@ function main() {
     [(windowW / 1.8), 0, (windowW / 2.8), windowH]
   ];
 
-  var audio = new Audio();
   var innocence = ["D5", "E5", "G5", "A5", "B5", "G5"];
 
-  var currentPlayIndex = 0;
-
   document.addEventListener("click", () => {
-    if (currentPlayIndex === innocence.length) {
-      currentPlayIndex = 0;
-    }
-
-    var key = innocence[currentPlayIndex];
-
-    var sound = audio.createSound(Convert.noteToFreq(Convert.keyToNote(key)));
-    sound.connect(audio.ctx.destination);
-    sound.start(0);
-    setTimeout(() => {
-      sound.stop(0);
-    }, 200);
-
-    var line = Line.draw(canvas, lines[currentPlayIndex]);
-    (<any>line).animate('opacity', 0, {
-      onChange: canvas.renderAll.bind(canvas),
-      duration: 1000
-    });
-
-    currentPlayIndex++;
   });
 }
 
