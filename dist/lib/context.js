@@ -1,5 +1,5 @@
 function Context() {
-    var Ctx = AudioContext || webkitAudioContext;
-    return new Ctx();
+    var AudioCtx = AudioContext || webkitAudioContext;
+    return new AudioCtx();
 }
 module.exports = Context;
