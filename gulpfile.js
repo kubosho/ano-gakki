@@ -7,9 +7,6 @@ var browserify = require("browserify");
 var source = require("vinyl-source-stream");
 var glob = require("glob");
 var runSequence = require('run-sequence');
-var del = require("del");
-var browserSync = require("browser-sync");
-var reload = browserSync.reload;
 
 var tsProject = $.typescript.createProject({
   target: "es5",
