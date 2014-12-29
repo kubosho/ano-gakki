@@ -15,7 +15,7 @@ test:
   pre:
     - npm run build
   post:
-    - mv coverage $CIRCLE_ARTIFACTS
+    - $(npm bin)/coveralls < ./coverage/lcov.info
 
 general:
   branches:
