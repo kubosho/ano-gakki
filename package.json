@@ -9,6 +9,7 @@
     "del": "^1.1.0",
     "espower-loader": "^0.10.0",
     "espowerify": "^0.10.0",
+    "glob": "^4.3.2",
     "gulp": "^3.8.10",
     "gulp-concat": "^2.4.2",
     "gulp-espower": "^0.10.0",
