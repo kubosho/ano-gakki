@@ -22,7 +22,8 @@
     "mocha": "^1.21.4",
     "power-assert": "^0.10.0",
     "run-sequence": "^1.0.2",
-    "vinyl-source-stream": "^1.0.0"
+    "vinyl-source-stream": "^1.0.0",
+    "web-audio-test-api": "^0.1.16"
   },
   "scripts": {
     "global-setup": "npm install -g bower typescript",
