@@ -4,6 +4,7 @@ var gulp = require("gulp");
 var $ = require("gulp-load-plugins")();
 
 var browserify = require("browserify");
+var del = require("del");
 var source = require("vinyl-source-stream");
 var glob = require("glob");
 var runSequence = require('run-sequence');
@@ -93,6 +94,10 @@ gulp.task("cover", function(callback) {
         .on("end", callback);
     });
 });
+
+//////////////////////////////////////////////////
+
+gulp.task('clean', del.bind(null, ['build']));
 
 //////////////////////////////////////////////////
 

@@ -6,6 +6,7 @@
     "browser-sync": "^1.8.0",
     "browserify": "^6.3.3",
     "coveralls": "^2.11.2",
+    "del": "^1.1.0",
     "espower-loader": "^0.10.0",
     "espowerify": "^0.10.0",
     "glob": "^4.3.2",
@@ -28,8 +29,10 @@
   "scripts": {
     "global-setup": "npm install -g bower typescript",
     "setup": "npm install && bower install",
-    "build": "gulp compile && gulp build:sources",
-    "test": "gulp build:tests && gulp test && gulp cover"
+    "build": "gulp compile && gulp lint:sources && gulp build:sources",
+    "test": "gulp lint:tests && gulp build:tests && gulp test",
+    "cover": "gulp cover",
+    "clean": "gulp clean"
   },
   "private": true
 }
