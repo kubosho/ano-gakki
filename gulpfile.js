@@ -20,13 +20,13 @@ gulp.task("compile", function() {
   gulp.src(["./src/**/*.ts"])
     .pipe($.typescript(tsProject))
     .js
-    .pipe(gulp.dest("./dist/"));
+    .pipe(gulp.dest("./build/sources/"));
 });
 
 //////////////////////////////////////////////////
 
 gulp.task("build:sources", function() {
-  var files = glob.sync("./dist/*.js");
+  var files = glob.sync("./build/sources/**/*.js");
   var b = browserify({
     entries: files,
     debug: true
@@ -34,8 +34,10 @@ gulp.task("build:sources", function() {
 
   return b.bundle()
     .pipe(source("ano_gakki.js"))
-    .pipe(gulp.dest("./dist/"))
+    .pipe(gulp.dest("./dist/"));
 });
+
+//////////////////////////////////////////////////
 
 gulp.task("build:tests", function(callback) {
   var files = glob.sync("./test/lib/*.js");
@@ -47,34 +49,49 @@ gulp.task("build:tests", function(callback) {
 
   return b.bundle()
     .pipe(source("all_test.js"))
-    .pipe(gulp.dest("./test/"));
+    .pipe(gulp.dest("./build/tests/"));
 });
 
 //////////////////////////////////////////////////
 
-gulp.task("lint", function() {
-  return gulp.src(["./src/**/*.js", "./test/**/*.js"])
+gulp.task("lint:sources", function() {
+  return gulp.src(["./build/sources/**/*.js"])
     .pipe($.jshint())
     .pipe($.jshint.reporter(require("jshint-stylish")))
-    .pipe($.jshint.reporter("fail"))
+    .pipe($.jshint.reporter("fail"));
 });
 
+//////////////////////////////////////////////////
+
+gulp.task("lint:tests", function() {
+  return gulp.src(["./build/tests/**/*.js"])
+    .pipe($.jshint())
+    .pipe($.jshint.reporter(require("jshint-stylish")))
+    .pipe($.jshint.reporter("fail"));
+});
+
+//////////////////////////////////////////////////
+
 gulp.task("test", function(callback) {
-  return gulp.src(["./test/all_test.js"])
+  return gulp.src(["./build/tests/all_test.js"])
     .pipe($.mocha())
     .on("error", callback);
 });
 
+//////////////////////////////////////////////////
+
 gulp.task("cover", function(callback) {
-  gulp.src("./src/**/*.js")
+  gulp.src("./dist/ano_gakki.js")
     .pipe($.istanbul())
     .pipe($.istanbul.hookRequire())
     .on("finish", function() {
-      return gulp.src(["./test/**/*.js"])
+      return gulp.src(["./build/tests/all_test.js"])
         .pipe($.mocha())
-        .pipe($.istanbul.writeReports())
+        .pipe($.istanbul.writeReports({
+          reporters: ['lcov', 'text', 'text-summary']
+        }))
         .on("end", callback);
-    })
+    });
 });
 
 //////////////////////////////////////////////////
