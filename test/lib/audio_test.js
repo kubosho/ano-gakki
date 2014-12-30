@@ -1,6 +1,6 @@
 /*global describe, before, it */
-var audio = require('../../dist/lib/audio');
-var context = require('../../dist/lib/context');
+var audio = require('../../build/sources/lib/audio');
+var context = require('../../build/sources/lib/context');
 
 // MEMO:
 // frequency value reference
