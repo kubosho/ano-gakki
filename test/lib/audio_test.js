@@ -1,6 +1,6 @@
 /*global describe, before, it */
-var audio = require('../../build/sources/lib/audio');
-var context = require('../../build/sources/lib/context');
+var audio = require("../../src/lib/audio");
+var context = require("../../src/lib/context");
 
 // MEMO:
 // frequency value reference
@@ -17,15 +17,13 @@ describe("Audio", function() {
       var sound = a.createSound(880);
       assert(sound.frequency.value === 880);
     });
+
+    it("should be frequency value is 12543.853951Hz", function() {
+      var sound = a.createSound(12543.853951);
+      assert(sound.frequency.value === 12543.853951);
+    });
+  });
+
+  describe("#connectOutput()", function() {
   });
 });
-
-// To truncate numbers to 3 decimal digits.
-// 3 digits to the right of the decimal point.
-// Example:
-//   2.3347827465 -> 2.334
-//   1109.8439532 -> 1109.843
-//   -5.347294791 -> -5.347
-var truncateDigits3 = function(num) {
-  return parseFloat(num.toString().substring(0, 7));
-};

@@ -8,7 +8,6 @@
     "coveralls": "^2.11.2",
     "del": "^1.1.0",
     "espower-loader": "^0.10.0",
-    "espowerify": "^0.10.0",
     "glob": "^4.3.2",
     "gulp": "^3.8.10",
     "gulp-concat": "^2.4.2",
@@ -28,9 +27,9 @@
   "scripts": {
     "global-setup": "npm install -g bower typescript",
     "setup": "npm install && bower install",
-    "build": "gulp compile && gulp lint:sources && gulp build:sources",
-    "test": "gulp lint:tests && gulp build:tests && gulp test",
-    "clean": "gulp clean"
+    "compile": "gulp compile",
+    "test": "gulp lint:sources && gulp lint:tests && gulp espower && gulp test",
+    "build": "gulp browserify"
   },
   "private": true
 }
