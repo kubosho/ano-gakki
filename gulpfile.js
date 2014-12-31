@@ -74,14 +74,6 @@ gulp.task("lint:tests", function() {
 //////////////////////////////////////////////////
 
 gulp.task("test", function(callback) {
-  return gulp.src(["./build/tests/all_test.js"])
-    .pipe($.mocha())
-    .on("error", callback);
-});
-
-//////////////////////////////////////////////////
-
-gulp.task("cover", function(callback) {
   gulp.src("./dist/ano_gakki.js")
     .pipe($.istanbul())
     .pipe($.istanbul.hookRequire())

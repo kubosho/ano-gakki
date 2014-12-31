@@ -20,7 +20,6 @@
     "gulp-typescript": "^2.3.0",
     "intelli-espower-loader": "^0.5.0",
     "jshint-stylish": "^1.0.0",
-    "mocha": "^1.21.4",
     "power-assert": "^0.10.0",
     "run-sequence": "^1.0.2",
     "vinyl-source-stream": "^1.0.0",
@@ -31,7 +30,6 @@
     "setup": "npm install && bower install",
     "build": "gulp compile && gulp lint:sources && gulp build:sources",
     "test": "gulp lint:tests && gulp build:tests && gulp test",
-    "cover": "gulp cover",
     "clean": "gulp clean"
   },
   "private": true
