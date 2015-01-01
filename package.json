@@ -21,14 +21,13 @@
     "jshint-stylish": "^1.0.0",
     "power-assert": "^0.10.0",
     "run-sequence": "^1.0.2",
-    "vinyl-source-stream": "^1.0.0",
     "web-audio-test-api": "^0.1.16"
   },
   "scripts": {
     "global-setup": "npm install -g bower typescript",
     "setup": "npm install && bower install",
     "compile": "gulp compile",
-    "test": "gulp lint:sources && gulp lint:tests && gulp espower && gulp test",
+    "test": "gulp lint && gulp espower && gulp test",
     "build": "gulp browserify"
   },
   "private": true

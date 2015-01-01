@@ -34,17 +34,8 @@ gulp.task("espower", function(callback) {
 
 //////////////////////////////////////////////////
 
-gulp.task("lint:sources", function() {
-  return gulp.src(["./src/**/*.js"])
-    .pipe($.jshint())
-    .pipe($.jshint.reporter(require("jshint-stylish")))
-    .pipe($.jshint.reporter("fail"));
-});
-
-//////////////////////////////////////////////////
-
-gulp.task("lint:tests", function() {
-  return gulp.src(["./test/**/*.js"])
+gulp.task("lint", function() {
+  return gulp.src(["./test/**/*.js", "./src/**/*.js"])
     .pipe($.jshint())
     .pipe($.jshint.reporter(require("jshint-stylish")))
     .pipe($.jshint.reporter("fail"));
