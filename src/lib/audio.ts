@@ -8,6 +8,10 @@ class Audio {
   }
 
   createSound(freq: number): OscillatorNode {
+    if (freq <= 0) {
+      return;
+    }
+
     var osc = this.ctx.createOscillator();
     osc.frequency.value = freq;
     return osc;

@@ -12,7 +12,7 @@ describe("Audio", function() {
     a = new audio(context());
   });
 
-  describe("#createSound()", function() {
+  describe("#createSound(freq: number)", function() {
     it("should be frequency value is 880Hz", function() {
       var sound = a.createSound(880);
       assert(sound.frequency.value === 880);
@@ -21,6 +21,11 @@ describe("Audio", function() {
     it("should be frequency value is 12543.853951Hz", function() {
       var sound = a.createSound(12543.853951);
       assert(sound.frequency.value === 12543.853951);
+    });
+
+    it("should be sound is undefined (freq argument is zero)", function() {
+      var sound = a.createSound(0);
+      assert(sound === undefined);
     });
   });
 
