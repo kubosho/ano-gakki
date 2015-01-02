@@ -24,7 +24,7 @@ describe("Audio", function() {
       assert(sound.frequency.value === 12543.853951);
     });
 
-    it("should be sound is undefined (freq argument is zero)", function() {
+    it("should be sound is undefined (argument is 0)", function() {
       var sound = anoGakkiAudio.createSound(0);
       assert(sound === undefined);
     });
