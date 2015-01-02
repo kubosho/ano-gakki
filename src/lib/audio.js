@@ -3,6 +3,9 @@ var Audio = (function () {
         this.ctx = context;
     }
     Audio.prototype.createSound = function (freq) {
+        if (freq <= 0) {
+            return;
+        }
         var osc = this.ctx.createOscillator();
         osc.frequency.value = freq;
         return osc;

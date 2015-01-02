@@ -19,9 +19,6 @@ test:
 
 general:
   branches:
-    only:
-      - master
-      - /^feat-.*/
-      - /^fix-.*/
-      - /^change-.*/
-      - /^upgrade-.*/
+    ignore:
+      - gh-pages
+      - /release\/.*/

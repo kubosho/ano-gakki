@@ -49,7 +49,7 @@ gulp.task("test", function(callback) {
     .pipe($.istanbul())
     .pipe($.istanbul.hookRequire())
     .on("finish", function() {
-      return gulp.src("./test/**/*.js")
+      return gulp.src("./test/espower/*.js")
         .pipe($.mocha())
         .pipe($.istanbul.writeReports({
           reporters: ['lcov', 'text-summary']
