@@ -9,11 +9,6 @@ var Line = (function () {
             selectable: false
         });
     };
-    Line.draw = function (canvas, coords) {
-        var line = Line.create(coords);
-        canvas.add(line);
-        return line;
-    };
     return Line;
 })();
 module.exports = Line;

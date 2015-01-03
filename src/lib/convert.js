@@ -5,7 +5,7 @@ var Convert = (function () {
         if (key === '') {
             return;
         }
-        if (key.search(/^[cCdDeEfFgGaAbB]/) === -1) {
+        if (key.search(/^[cdefgabCDEFGAB]/) === -1) {
             throw new Error(key + " is invalid key name.");
         }
         var KEYS = [

@@ -1,8 +1,9 @@
 /// <reference path="../DefinitelyTyped/fabricjs/fabricjs.d.ts" />
 
-import convert = require("./lib/convert");
-import audio = require("./lib/Audio");
-import line = require("./lib/line");
+import Audio = require("./lib/Audio");
+import context = require("./lib/Context");
+import convert = require("./lib/Convert");
+import line = require("./lib/Line");
 
 function main() {
   "use strict";
@@ -14,7 +15,7 @@ function main() {
   canvas.setWidth(windowW);
   canvas.setHeight(windowH);
 
-  var lines = [
+  var linePoints = [
     // xStart, yStart, xEnd, yEnd
     [0, (windowH / 2), windowW, (windowH / 2)],
     [(windowW / 3.6), 0, (windowW / 3.6), windowH],
@@ -24,9 +25,46 @@ function main() {
     [(windowW / 1.8), 0, (windowW / 2.8), windowH]
   ];
 
-  var innocence = ["D5", "E5", "G5", "A5", "B5", "G5"];
+  var lines = [];
+  linePoints.forEach((point, i) => {
+    lines.push(line.create(linePoints[i]));
+  });
 
+  var innocence = ["D5", "E5", "G5", "A5", "B5", "G5"];
+  var ctx = context();
+  var audio = new Audio(ctx);
+
+  var currentPlayIndex = 0;
   document.addEventListener("click", () => {
+    if (currentPlayIndex === innocence.length) {
+      currentPlayIndex = 0;
+    }
+
+    var key = innocence[currentPlayIndex];
+    var sound = audio.createSound(convert.noteToFreq(convert.keyToNote(key)));
+    sound.connect(ctx.destination);
+
+    sound.start(0);
+    setTimeout(function () {
+      sound.stop(0);
+    }, 200);
+
+    var line = lines[currentPlayIndex];
+    if (line.getOpacity() === 0) {
+      line.opacity = 1;
+    }
+
+    canvas.add(line);
+
+    line.animate("opacity", 0, {
+      duration: 1000,
+      onChange: canvas.renderAll.bind(canvas),
+      onComplete: function() {
+        line.opacity = 0;
+      }
+    });
+
+    currentPlayIndex++;
   });
 }
 
