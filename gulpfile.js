@@ -7,7 +7,9 @@ var browserify = require("browserify");
 var del = require("del");
 var source = require("vinyl-source-stream");
 var glob = require("glob");
-var runSequence = require('run-sequence');
+var runSequence = require("run-sequence");
+var browserSync = require("browser-sync");
+var reload = browserSync.reload;
 
 var tsProject = $.typescript.createProject({
   target: "es5",
@@ -70,6 +72,17 @@ gulp.task("browserify", function() {
   return b.bundle()
     .pipe(source("ano_gakki.js"))
     .pipe(gulp.dest("./dist/"));
+});
+
+//////////////////////////////////////////////////
+
+gulp.task("serve", function() {
+  browserSync({
+    notify: false,
+    server: './dist/'
+  });
+
+  gulp.watch(['./src/**/*.ts'], ["compile", "lint", "espower", "test", "browserify", reload]);
 });
 
 //////////////////////////////////////////////////

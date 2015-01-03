@@ -29,7 +29,8 @@
     "setup": "npm install && bower install",
     "compile": "gulp compile",
     "test": "gulp lint && gulp espower && gulp test",
-    "build": "gulp browserify"
+    "build": "gulp browserify",
+    "serve": "gulp serve"
   },
   "private": true
 }
