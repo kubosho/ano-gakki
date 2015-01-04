@@ -1,6 +1,6 @@
 /// <reference path="../../DefinitelyTyped/fabricjs/fabricjs.d.ts" />
 
-class Line {
+export class Line {
   static create(coords: number[]): fabric.ILine {
     return new fabric.Line(coords, {
       fill: "#51917a",
@@ -10,5 +10,3 @@ class Line {
     });
   }
 }
-
-export = Line;

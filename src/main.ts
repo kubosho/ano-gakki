@@ -3,7 +3,7 @@
 import Audio = require("./lib/Audio");
 import context = require("./lib/Context");
 import convert = require("./lib/Convert");
-import line = require("./lib/Line");
+import shape = require("./lib/Shape");
 
 function main() {
   "use strict";
@@ -27,7 +27,7 @@ function main() {
 
   var lines = [];
   linePoints.forEach((point, i) => {
-    lines.push(line.create(linePoints[i]));
+    lines.push(shape.Line.create(linePoints[i]));
   });
 
   var innocence = ["D5", "E5", "G5", "A5", "B5", "G5"];

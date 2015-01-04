@@ -11,4 +11,4 @@ var Line = (function () {
     };
     return Line;
 })();
-module.exports = Line;
+exports.Line = Line;

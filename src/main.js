@@ -1,7 +1,7 @@
 var Audio = require("./lib/Audio");
 var context = require("./lib/Context");
 var convert = require("./lib/Convert");
-var line = require("./lib/Line");
+var shape = require("./lib/Shape");
 function main() {
     "use strict";
     var windowW = window.innerWidth, windowH = window.innerHeight;
@@ -18,7 +18,7 @@ function main() {
     ];
     var lines = [];
     linePoints.forEach(function (point, i) {
-        lines.push(line.create(linePoints[i]));
+        lines.push(shape.Line.create(linePoints[i]));
     });
     var innocence = ["D5", "E5", "G5", "A5", "B5", "G5"];
     var ctx = context();
