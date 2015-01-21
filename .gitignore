@@ -4,7 +4,9 @@ bower_components/
 coverage/
 node_modules/
 test/espower/
+dist/
 
 .DS_Store
 tags
 npm-debug.log
+src/**/*.js
