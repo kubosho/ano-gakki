@@ -64,6 +64,26 @@ function main() {
       }
     });
 
+    // rect
+    var rect = shape.Rect.create();
+    canvas.add(rect);
+
+    function animate() {
+      canvas.forEachObject(obj => {
+        obj.left += ((<any>obj).movingLeft ? -1 : 1);
+        obj.top += 1;
+        if (obj.left > 900 || obj.top > 500) {
+          canvas.remove(obj);
+        }
+        else {
+          obj.setAngle(obj.getAngle() + 2);
+        }
+      });
+      requestAnimationFrame(animate);
+    }
+    canvas.renderAll();
+    requestAnimationFrame(animate);
+
     currentPlayIndex++;
   });
 }

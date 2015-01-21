@@ -10,3 +10,19 @@ export class Line {
     });
   }
 }
+
+export class Circle {
+}
+
+export class Rect {
+  static create(): fabric.IRect {
+    return new fabric.Rect({
+      fill: "transparent",
+      stroke: "#51917a",
+      strokeWidth: 10,
+      width: 100,
+      height: 100,
+      selectable: false
+    });
+  }
+}
