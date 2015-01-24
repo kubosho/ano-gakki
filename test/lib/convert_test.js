@@ -1,8 +1,8 @@
 /*global describe, before, it */
 var convert = require("../../src/lib/convert");
 
-describe("Convert", function() {
-  describe("#keyToNote(key: string)", function() {
+describe("convert", function() {
+  describe(".keyToNote(key: string)", function() {
     it("should be return 69", function() {
       assert(convert.keyToNote("A4") === 69);
     });
@@ -30,7 +30,7 @@ describe("Convert", function() {
     });
   });
 
-  describe("#noteToFreq(note: number)", function() {
+  describe(".noteToFreq(note: number)", function() {
     it("should be return 440", function() {
       assert(convert.noteToFreq(69) === 440);
     });

@@ -1,31 +1,31 @@
 /*global describe, before, it */
-var audio = require("../../src/lib/audio");
-var context = require("../../src/lib/context");
+var Audio = require("../../src/lib/audio");
+var context = require("../../src/lib/context").create;
 
 // MEMO:
 // frequency value reference
 // http://www.g200kg.com/jp/docs/tech/notefreq.html
 describe("Audio", function() {
   var ctx = context();
-  var anoGakkiAudio = null;
+  var audio = null;
 
   before(function() {
-    anoGakkiAudio = new audio(ctx);
+    audio = new Audio(ctx);
   });
 
   describe("#createSound(freq: number)", function() {
     it("should be frequency value is 880Hz", function() {
-      var sound = anoGakkiAudio.createSound(880);
+      var sound = audio.createSound(880);
       assert(sound.frequency.value === 880);
     });
 
     it("should be frequency value is 12543.853951Hz", function() {
-      var sound = anoGakkiAudio.createSound(12543.853951);
+      var sound = audio.createSound(12543.853951);
       assert(sound.frequency.value === 12543.853951);
     });
 
     it("should be sound is undefined (argument is 0)", function() {
-      var sound = anoGakkiAudio.createSound(0);
+      var sound = audio.createSound(0);
       assert(sound === undefined);
     });
   });
@@ -39,19 +39,19 @@ describe("Audio", function() {
 
     it("should be working", function() {
       assert.doesNotThrow(function() {
-        anoGakkiAudio.connectOutput(sound);
+        audio.connectOutput(sound);
       }, /not defined/);
     });
 
-    it("argument is 'foo', should be throw error.", function() {
+    it("should be throw error (argument is 'foo')", function() {
       assert.throws(function() {
-        anoGakkiAudio.connectOutput("foo");
+        audio.connectOutput("foo");
       }, Error);
     });
 
-    it("argument is {}, should be throw error.", function() {
+    it("should be throw error (argument is {})", function() {
       assert.throws(function() {
-        anoGakkiAudio.connectOutput({});
+        audio.connectOutput({});
       }, Error);
     });
   });
