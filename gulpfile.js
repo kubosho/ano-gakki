@@ -8,6 +8,7 @@ var del = require("del");
 var source = require("vinyl-source-stream");
 var glob = require("glob");
 var runSequence = require("run-sequence");
+var merge = require("merge-stream");
 var browserSync = require("browser-sync");
 var reload = browserSync.reload;
 
@@ -20,10 +21,18 @@ var tsProject = $.typescript.createProject({
 //////////////////////////////////////////////////
 
 gulp.task("compile", function() {
-  gulp.src(["./src/**/*.ts"])
+  var development = gulp.src(["./src/**/*.ts"])
+   .pipe($.typescript(tsProject))
+   .js
+   .pipe(gulp.dest("./src/"));
+
+  var production = gulp.src(["./src/**/*.ts"])
     .pipe($.typescript(tsProject))
     .js
-    .pipe(gulp.dest("./src/"));
+    .pipe($.concat("ano-gakki.js"))
+    .pipe(gulp.dest("./dist/"));
+
+  return merge(development, production);
 });
 
 //////////////////////////////////////////////////
@@ -63,14 +72,14 @@ gulp.task("test", function(callback) {
 //////////////////////////////////////////////////
 
 gulp.task("browserify", function() {
-  var files = glob.sync("./src/**/*.js");
+  var files = glob.sync("./dist/*.js");
   var b = browserify({
     entries: files,
     debug: true
   });
 
   return b.bundle()
-    .pipe(source("ano_gakki.js"))
+    .pipe(source("ano-gakki.js"))
     .pipe(gulp.dest("./dist/"));
 });
 
