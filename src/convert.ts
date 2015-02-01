@@ -1,4 +1,14 @@
 class Convert {
+    private static KEYS: string[] = [
+        "c", "c#",
+        "d", "d#",
+        "e",
+        "f", "f#",
+        "g", "g#",
+        "a", "a#",
+        "b"
+    ];
+
     // example:
     // - "A4" | 440
     public static getFreq(pitch: string): number {
@@ -21,23 +31,12 @@ class Convert {
             throw new Error(key + " is invalid key name.");
         }
 
-        var KEYS = [
-        "c", "c#",
-        "d", "d#",
-        "e",
-        "f", "f#",
-        "g", "g#",
-        "a", "a#",
-        "b"
-        ];
         var index = (key.indexOf("#") !== -1) ? 2 : 1;
         var keyName = key.substring(0, index).toLowerCase();
         var num = Number(key.substring(index)) + 1;
-        var note = KEYS.indexOf(keyName) + 12 * num;
+        var note = this.KEYS.indexOf(keyName) + 12 * num;
 
-        if (note < 0 || note > 127) {
-            throw new Error("'" + note + "'" + " is not defined key at MIDI.");
-        }
+        this._isMIDIKey(note);
 
         return note;
     }
@@ -49,11 +48,15 @@ class Convert {
             throw new Error(note + " is not number.");
         }
 
+        this._isMIDIKey(note);
+
+        return 440 * Math.pow(Math.pow(2, (1 / 12)), note - 69);
+    }
+
+    private static _isMIDIKey(note: number): void {
         if (note < 0 || note > 127) {
             throw new Error(note + " is not defined key at MIDI.");
         }
-
-        return 440 * Math.pow(Math.pow(2, (1 / 12)), note - 69);
     }
 }
 
