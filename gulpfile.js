@@ -54,7 +54,7 @@ gulp.task("lint", function() {
 
 //////////////////////////////////////////////////
 
-gulp.task("test", function(callback) {
+gulp.task("test", function(cb) {
   require("./test/bootstrap.js");
   gulp.src("./src/**/*.js")
     .pipe($.istanbul())
@@ -65,7 +65,7 @@ gulp.task("test", function(callback) {
         .pipe($.istanbul.writeReports({
           reporters: ['lcov', 'text-summary']
         }))
-        .on("end", callback);
+        .on("end", cb);
     });
 });
 
@@ -93,6 +93,10 @@ gulp.task("serve", function() {
 
   gulp.watch(['./src/**/*.ts'], ["compile", "lint", "espower", "test", "browserify", reload]);
 });
+
+//////////////////////////////////////////////////
+
+gulp.task('clean', del.bind(null, 'dist'));
 
 //////////////////////////////////////////////////
 
