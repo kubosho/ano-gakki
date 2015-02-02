@@ -1,5 +1,5 @@
 /*global describe, before, it */
-var Sound = require("../../src/sound");
+var Sound = require("../../dist/lib/sound");
 
 describe("sound", function() {
   var ctx = new AudioContext();

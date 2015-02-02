@@ -25,7 +25,7 @@ gulp.task("compile", function() {
   var development = gulp.src(["./src/**/*.ts"])
    .pipe($.typescript(tsProject))
    .js
-   .pipe(gulp.dest("./src/"));
+   .pipe(gulp.dest("./dist/lib/"));
 
   var production = gulp.src(["./src/**/*.ts"])
     .pipe($.typescript(tsProject))
@@ -57,7 +57,7 @@ gulp.task("lint", function() {
 
 gulp.task("test", function(cb) {
   require("./test/bootstrap.js");
-  gulp.src("./src/**/*.js")
+  gulp.src("./dist/**/*.js")
     .pipe($.istanbul())
     .pipe($.istanbul.hookRequire())
     .on("finish", function() {
@@ -73,7 +73,7 @@ gulp.task("test", function(cb) {
 //////////////////////////////////////////////////
 
 gulp.task("browserify", function() {
-  var files = glob.sync("./dist/*.js");
+  var files = glob.sync("./dist/**/*.js");
   var b = browserify({
     entries: files,
     debug: true

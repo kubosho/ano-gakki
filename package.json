@@ -30,7 +30,7 @@
     "setup": "npm install && bower install",
     "compile": "gulp compile",
     "clean": "gulp clean",
-    "copy": "cp -f src/*.js dist",
+    "copy": "cp -f dist/**/*.js dist",
     "test": "gulp lint && gulp espower && gulp test",
     "build": "gulp browserify",
     "serve": "gulp serve"
