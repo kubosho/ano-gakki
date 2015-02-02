@@ -1,16 +1,13 @@
 /// <reference path="../DefinitelyTyped/webaudioapi/waa.d.ts" />
-import Data = require("./Data");
 
 class Sound {
     private _ctx: AudioContext;
     private _freqs: number[];
     private _sounds: OscillatorNode[] = [];
 
-    constructor(context: AudioContext) {
-        var data = new Data();
-
+    constructor(context: AudioContext, freqs: number[]) {
         this._ctx = context;
-        this._freqs = data.freqs;
+        this._freqs = freqs;
 
         this.createSounds();
     }

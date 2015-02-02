@@ -1,8 +1,10 @@
+import Data = require("./Data");
 import Sound = require("./Sound");
 import context = require("./Context");
 
 var ctx = context.create();
-var sound = new Sound(ctx);
+var data = new Data();
+var sound = new Sound(ctx, data.freqs);
 
 function main() {
     "use strict";
