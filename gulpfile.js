@@ -14,6 +14,7 @@ var reload = browserSync.reload;
 
 var tsProject = $.typescript.createProject({
   target: "es5",
+  module: "commonjs",
   removeComments: true,
   sortOutput: true
 });
