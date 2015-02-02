@@ -29,6 +29,8 @@
     "global-setup": "npm install -g bower typescript",
     "setup": "npm install && bower install",
     "compile": "gulp compile",
+    "clean": "rm dist/*.js",
+    "copy": "cp src/*.js dist/",
     "test": "gulp lint && gulp espower && gulp test",
     "build": "gulp browserify",
     "serve": "gulp serve"
