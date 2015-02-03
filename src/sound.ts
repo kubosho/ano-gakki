@@ -1,4 +1,4 @@
-/// <reference path="../DefinitelyTyped/webaudioapi/waa.d.ts" />
+/// <reference path="../typings/webaudioapi/waa.d.ts" />
 
 class Sound {
     private _ctx: AudioContext;

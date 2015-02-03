@@ -1,4 +1,4 @@
-/// <reference path="../DefinitelyTyped/webaudioapi/waa.d.ts" />
+/// <reference path="../typings/webaudioapi/waa.d.ts" />
 
 class Context {
     public static create(): AudioContext {

@@ -1,0 +1,15 @@
+{
+  "repos": [
+    {
+      "url": "https://github.com/borisyankov/DefinitelyTyped.git",
+      "ref": "master"
+    }
+  ],
+  "path": "typings",
+  "bundle": "typings/bundle.d.ts",
+  "dependencies": {
+    "webaudioapi/waa.d.ts": {
+      "ref": "23b6edd28c0f5ccbe9e01bcfc84963d07b921ff7"
+    }
+  }
+}

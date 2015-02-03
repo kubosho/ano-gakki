@@ -7,6 +7,7 @@
     "browserify": "^6.3.3",
     "coveralls": "^2.11.2",
     "del": "^1.1.0",
+    "dtsm": "^0.4.1",
     "espower-loader": "^0.10.0",
     "glob": "^4.3.2",
     "gulp": "^3.8.10",
@@ -27,7 +28,7 @@
   },
   "scripts": {
     "global-setup": "npm install -g bower typescript",
-    "setup": "npm install && bower install",
+    "setup": "npm install && bower install && dtsm install",
     "compile": "gulp compile",
     "clean": "gulp clean",
     "copy": "cp -f dist/**/*.js dist",
