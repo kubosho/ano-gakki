@@ -10,6 +10,9 @@
   "dependencies": {
     "webaudioapi/waa.d.ts": {
       "ref": "23b6edd28c0f5ccbe9e01bcfc84963d07b921ff7"
+    },
+    "snapsvg/snapsvg.d.ts": {
+      "ref": "b0c9a94cadc4af42d2c365b2e425788109e8a0d5"
     }
   }
 }
