@@ -1,9 +1,7 @@
 {
   "name": "Ano Gakki",
   "version": "0.0.1",
-  "authors": [
-    "kubosho_"
-  ],
+  "authors": "kubosho_",
   "license": "MIT",
   "ignore": [
     "**/.*",
@@ -13,6 +11,7 @@
     "tests"
   ],
   "dependencies": {
-    "modularized-normalize-scss": "~3.0.1"
+    "modularized-normalize-scss": "~3.0.1",
+    "snap.svg": "~0.3.0"
   }
 }

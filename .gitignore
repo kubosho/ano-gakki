@@ -6,6 +6,7 @@ node_modules/
 test/espower/
 src/*.js
 dist/*.js
+dist/external/
 !dist/ano-gakki.js
 
 .DS_Store
