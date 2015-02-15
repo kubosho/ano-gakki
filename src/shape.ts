@@ -7,25 +7,35 @@ class Shape {
         this.snap = Snap(parentSelector);
     }
 
-    createLine(linePoints: number[]): Snap.Element {
+    public drawLine(linePoints: number[], duration = 1000): Snap.Element {
         if (linePoints.length !== 4) {
             return;
         }
-        return this.snap.line(linePoints[0],
-                              linePoints[1],
-                              linePoints[2],
-                              linePoints[3]);
+
+        var line = this.snap.line(linePoints[0], linePoints[1], linePoints[2], linePoints[3]);
+        line.attr({
+            stroke: "#51917a",
+            strokeWidth: 10
+        })
+        .animate({
+            opacity: 0
+        }, duration);
+
+        return line;
     }
 
-    drawLine(line: Snap.Element, duration = 1000): void {
-        line
-            .attr({
-                stroke: "#51917a",
-                strokeWidth: 10
-            })
-            .animate({
-                opacity: 0
-            }, duration)
+    public drawCircle(x: number, y: number, radius: number, duration = 500): Snap.Element {
+        var circle = this.snap.circle(x, y, radius);
+        circle.attr({
+            fill: "transparent",
+            stroke: "#51917a",
+            strokeWidth: 10,
+        })
+        .animate({
+            r: window.innerWidth
+        }, duration);
+
+        return circle;
     }
 }
 

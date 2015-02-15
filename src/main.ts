@@ -19,7 +19,7 @@ function main() {
     };
     var shape = new Shape("#shape");
 
-    document.addEventListener("click", () => {
+    document.addEventListener("click", (ev: PointerEvent) => {
         if (currentPlayIndex === sounds.length) {
             currentPlayIndex = 0;
             sound.destroySounds();
@@ -27,11 +27,13 @@ function main() {
         }
 
         var linePoints = data.getLinePoints(windowSize.x, windowSize.y);
-        var line = shape.createLine(linePoints[currentPlayIndex]);
-        shape.drawLine(line);
+        var line = shape.drawLine(linePoints[currentPlayIndex]);
+
+        var circle = shape.drawCircle(ev.pageX, ev.pageY, 10);
 
         setTimeout(() => {
             line.remove();
+            circle.remove();
         }, 1000);
 
         sound.play(sounds[currentPlayIndex]);
