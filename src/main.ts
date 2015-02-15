@@ -1,4 +1,5 @@
 import Data = require("./Data");
+import Shape = require("./Shape");
 import Sound = require("./Sound");
 import context = require("./Context");
 
@@ -12,12 +13,26 @@ function main() {
     var currentPlayIndex = 0;
     var sounds = sound.sounds;
 
+    var windowSize = {
+        x: window.innerWidth,
+        y: window.innerHeight
+    };
+    var shape = new Shape("#shape");
+
     document.addEventListener("click", () => {
         if (currentPlayIndex === sounds.length) {
             currentPlayIndex = 0;
             sound.destroySounds();
             sounds = sound.createSounds();
         }
+
+        var linePoints = data.getLinePoints(windowSize.x, windowSize.y);
+        var line = shape.createLine(linePoints[currentPlayIndex]);
+        shape.drawLine(line);
+
+        setTimeout(() => {
+            line.remove();
+        }, 1000);
 
         sound.play(sounds[currentPlayIndex]);
         sound.stop(sounds[currentPlayIndex]);

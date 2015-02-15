@@ -73,7 +73,7 @@ gulp.task("test", function(cb) {
 //////////////////////////////////////////////////
 
 gulp.task("browserify", function() {
-  var files = glob.sync("./dist/**/*.js");
+  var files = glob.sync("./dist/lib/*.js");
   var b = browserify({
     entries: files,
     debug: true
@@ -97,7 +97,7 @@ gulp.task("serve", function() {
 
 //////////////////////////////////////////////////
 
-gulp.task('clean', del.bind(null, 'dist/*.js'));
+gulp.task('clean', del.bind(null, ["dist/*.js", "dist/lib/*.js"]));
 
 //////////////////////////////////////////////////
 
