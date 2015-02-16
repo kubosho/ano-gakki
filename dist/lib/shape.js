@@ -17,7 +17,7 @@ var Shape = (function () {
         return line;
     };
     Shape.prototype.drawCircle = function (x, y, radius, duration) {
-        if (duration === void 0) { duration = 500; }
+        if (duration === void 0) { duration = 750; }
         var circle = this.snap.circle(x, y, radius);
         circle.attr({
             fill: "transparent",

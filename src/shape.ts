@@ -24,7 +24,7 @@ class Shape {
         return line;
     }
 
-    public drawCircle(x: number, y: number, radius: number, duration = 500): Snap.Element {
+    public drawCircle(x: number, y: number, radius: number, duration = 750): Snap.Element {
         var circle = this.snap.circle(x, y, radius);
         circle.attr({
             fill: "transparent",
