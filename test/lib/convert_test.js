@@ -1,4 +1,4 @@
-/*global describe, before, it */
+/*global describe, before, beforeEach, after, afterEach, it, assert */
 var convert = require("../../dist/lib/convert");
 
 describe("convert", function() {

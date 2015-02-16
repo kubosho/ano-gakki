@@ -1,4 +1,4 @@
-/*global describe, before, it */
+/*global describe, before, beforeEach, after, afterEach, it, assert */
 var Sound = require("../../dist/lib/sound");
 
 describe("sound", function() {
