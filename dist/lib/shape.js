@@ -13,7 +13,9 @@ var Shape = (function () {
             strokeWidth: 10
         }).animate({
             opacity: 0
-        }, duration);
+        }, duration, null, function () {
+            line.remove();
+        });
         return line;
     };
     Shape.prototype.drawCircle = function (x, y, radius, duration) {
@@ -25,7 +27,9 @@ var Shape = (function () {
             strokeWidth: 10,
         }).animate({
             r: window.innerWidth
-        }, duration);
+        }, duration, null, function () {
+            circle.remove();
+        });
         return circle;
     };
     return Shape;

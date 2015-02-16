@@ -19,7 +19,9 @@ class Shape {
         })
         .animate({
             opacity: 0
-        }, duration);
+        }, duration, null, () => {
+            line.remove();
+        });
 
         return line;
     }
@@ -33,7 +35,9 @@ class Shape {
         })
         .animate({
             r: window.innerWidth
-        }, duration);
+        }, duration, null, () => {
+            circle.remove();
+        });
 
         return circle;
     }

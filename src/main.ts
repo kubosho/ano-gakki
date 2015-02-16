@@ -1,3 +1,5 @@
+/// <reference path="../typings/lodash/lodash.d.ts" />
+
 import Data = require("./Data");
 import Shape = require("./Shape");
 import Sound = require("./Sound");
@@ -27,14 +29,10 @@ function main() {
         }
 
         var linePoints = data.getLinePoints(windowSize.x, windowSize.y);
-        var line = shape.drawLine(linePoints[currentPlayIndex]);
+        var line = () => shape.drawLine(linePoints[currentPlayIndex]);
+        var circle = () => shape.drawCircle(ev.pageX, ev.pageY, 10);
 
-        var circle = shape.drawCircle(ev.pageX, ev.pageY, 10);
-
-        setTimeout(() => {
-            line.remove();
-            circle.remove();
-        }, 1000);
+        _.sample([line, circle])();
 
         sound.play(sounds[currentPlayIndex]);
         sound.stop(sounds[currentPlayIndex]);

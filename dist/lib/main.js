@@ -21,12 +21,9 @@ function main() {
             sounds = sound.createSounds();
         }
         var linePoints = data.getLinePoints(windowSize.x, windowSize.y);
-        var line = shape.drawLine(linePoints[currentPlayIndex]);
-        var circle = shape.drawCircle(ev.pageX, ev.pageY, 10);
-        setTimeout(function () {
-            line.remove();
-            circle.remove();
-        }, 1000);
+        var line = function () { return shape.drawLine(linePoints[currentPlayIndex]); };
+        var circle = function () { return shape.drawCircle(ev.pageX, ev.pageY, 10); };
+        _.sample([line, circle])();
         sound.play(sounds[currentPlayIndex]);
         sound.stop(sounds[currentPlayIndex]);
         currentPlayIndex++;
