@@ -10,7 +10,6 @@ var glob = require("glob");
 var runSequence = require("run-sequence");
 var merge = require("merge-stream");
 var browserSync = require("browser-sync");
-var reload = browserSync.reload;
 
 var tsProject = $.typescript.createProject({
   target: "es5",
@@ -91,8 +90,6 @@ gulp.task("serve", function() {
     notify: false,
     server: './dist/'
   });
-
-  gulp.watch(['./src/**/*.ts'], ["compile", "lint", "espower", "test", "browserify", reload]);
 });
 
 //////////////////////////////////////////////////
