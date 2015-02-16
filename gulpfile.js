@@ -94,7 +94,7 @@ gulp.task("serve", function() {
 
 //////////////////////////////////////////////////
 
-gulp.task('clean', del.bind(null, ["dist/*.js", "dist/lib/*.js"]));
+gulp.task('clean', del.bind(null, ["dist/*.js", "dist/lib/*.js", "test/espower/*.js"]));
 
 //////////////////////////////////////////////////
 
