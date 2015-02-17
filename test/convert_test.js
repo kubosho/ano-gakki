@@ -1,5 +1,5 @@
 /*global describe, before, beforeEach, after, afterEach, it, assert */
-var convert = require("../../dist/lib/convert");
+var convert = require("../../dist/convert");
 
 describe("convert", function() {
   describe(".getFreq", function() {

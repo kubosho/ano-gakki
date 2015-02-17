@@ -8,12 +8,12 @@ var del = require("del");
 var source = require("vinyl-source-stream");
 var glob = require("glob");
 var runSequence = require("run-sequence");
-var merge = require("merge-stream");
 var browserSync = require("browser-sync");
 
 var tsProject = $.typescript.createProject({
   target: "es5",
   module: "commonjs",
+  noImplicitAny: true,
   removeComments: true,
   sortOutput: true
 });
@@ -21,24 +21,17 @@ var tsProject = $.typescript.createProject({
 //////////////////////////////////////////////////
 
 gulp.task("compile", function() {
-  var development = gulp.src(["./src/**/*.ts"])
-   .pipe($.typescript(tsProject))
-   .js
-   .pipe(gulp.dest("./dist/lib/"));
-
-  var production = gulp.src(["./src/**/*.ts"])
+  return gulp.src(["./src/**/*.ts"])
     .pipe($.typescript(tsProject))
     .js
-    .pipe($.concat("ano-gakki.js"))
-    .pipe(gulp.dest("./dist/"));
-
-  return merge(development, production);
+    .pipe(gulp.dest("./dist/"))
+    .pipe($.concat("ano-gakki.js"));
 });
 
 //////////////////////////////////////////////////
 
 gulp.task("espower", function(callback) {
-  return gulp.src("./test/lib/*.js")
+  return gulp.src("./test/*.js")
     .pipe($.espower())
     .pipe(gulp.dest("./test/espower/"));
 });
@@ -55,7 +48,7 @@ gulp.task("lint", function() {
 //////////////////////////////////////////////////
 
 gulp.task("test", function(cb) {
-  require("./test/bootstrap.js");
+  require("./test/lib/bootstrap.js");
   gulp.src("./dist/**/*.js")
     .pipe($.istanbul())
     .pipe($.istanbul.hookRequire())
@@ -94,7 +87,7 @@ gulp.task("serve", function() {
 
 //////////////////////////////////////////////////
 
-gulp.task('clean', del.bind(null, ["dist/*.js", "dist/lib/*.js", "test/espower/*.js"]));
+gulp.task('clean', del.bind(null, ["dist/*.js", "test/espower/*.js"]));
 
 //////////////////////////////////////////////////
 

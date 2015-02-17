@@ -1,4 +1,4 @@
-/// <reference path="../typings/webaudioapi/waa.d.ts" />
+/// <reference path="../typings/bundle.d.ts" />
 
 class Context {
     public static create(): AudioContext {

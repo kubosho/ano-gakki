@@ -1,4 +1,4 @@
-/// <reference path="../typings/snapsvg/snapsvg.d.ts" />
+/// <reference path="../typings/bundle.d.ts" />
 
 class Shape {
     snap: Snap.Paper;
