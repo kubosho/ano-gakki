@@ -1,9 +1,9 @@
 /// <reference path="../typings/bundle.d.ts" />
 
-import Data = require("./Data");
-import Shape = require("./Shape");
-import Sound = require("./Sound");
-import context = require("./Context");
+import Data = require("./data");
+import Shape = require("./shape");
+import Sound = require("./sound");
+import context = require("./context");
 
 var ctx = context.create();
 var data = new Data();

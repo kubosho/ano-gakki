@@ -1,7 +1,7 @@
-var Data = require("./Data");
-var Shape = require("./Shape");
-var Sound = require("./Sound");
-var context = require("./Context");
+var Data = require("./data");
+var Shape = require("./shape");
+var Sound = require("./sound");
+var context = require("./context");
 var ctx = context.create();
 var data = new Data();
 var sound = new Sound(ctx, data.freqs);

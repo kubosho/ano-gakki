@@ -1,4 +1,4 @@
-var convert = require("./Convert");
+var convert = require("./convert");
 var Data = (function () {
     function Data() {
         this.freqs = [];
