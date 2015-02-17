@@ -66,7 +66,7 @@ gulp.task("test", function(cb) {
 //////////////////////////////////////////////////
 
 gulp.task("browserify", function() {
-  var files = glob.sync("./dist/lib/*.js");
+  var files = glob.sync("./dist/*.js");
   var b = browserify({
     entries: files,
     debug: true
