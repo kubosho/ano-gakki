@@ -1,4 +1,4 @@
-import convert = require("./Convert");
+import convert = require("./convert");
 
 class Data {
     private static _scores = ["D5", "E5", "G5", "A5", "B5", "G5"];
