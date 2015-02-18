@@ -4,9 +4,8 @@ bower_components/
 coverage/
 node_modules/
 test/espower/
-src/*.js
-dist/external/
-!dist/ano-gakki.js
+lib/
+dist/
 
 .DS_Store
 tags
