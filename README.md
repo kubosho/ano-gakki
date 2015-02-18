@@ -2,7 +2,6 @@ Ano Gakki
 =========
 
 [![Circle CI](https://circleci.com/gh/kubosho/ano-gakki.svg?style=svg)](https://circleci.com/gh/kubosho/ano-gakki)
-[![Code Climate](https://codeclimate.com/github/kubosho/ano-gakki/badges/gpa.svg)](https://codeclimate.com/github/kubosho/ano-gakki)
 [![Coverage Status](https://img.shields.io/coveralls/kubosho/ano-gakki.svg)](https://coveralls.io/r/kubosho/ano-gakki)
 [![David](https://img.shields.io/david/dev/kubosho/ano-gakki.svg)](https://david-dm.org/kubosho/ano-gakki#info=devDependencies)
 [![MIT License](http://img.shields.io/badge/license-MIT-green.svg)](https://github.com/kubosho/ano-gakki/blob/master/LICENSE)
