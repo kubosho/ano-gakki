@@ -21,7 +21,7 @@ var tsProject = $.typescript.createProject({
 //////////////////////////////////////////////////
 
 gulp.task("compile", function() {
-  return gulp.src(["./src/**/*.ts"])
+  return gulp.src(["./src/scripts/*.ts"])
     .pipe($.typescript(tsProject))
     .js
     .pipe(gulp.dest("./lib/"));
