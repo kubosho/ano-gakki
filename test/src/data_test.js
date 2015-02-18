@@ -1,5 +1,5 @@
 /*global describe, before, beforeEach, after, afterEach, it, assert */
-var data = require("../../dist/data");
+var data = require("../../lib/data");
 
 describe("data", function() {
 });

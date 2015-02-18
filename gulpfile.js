@@ -6,7 +6,6 @@ var $ = require("gulp-load-plugins")();
 var browserify = require("browserify");
 var del = require("del");
 var source = require("vinyl-source-stream");
-var glob = require("glob");
 var runSequence = require("run-sequence");
 var browserSync = require("browser-sync");
 var reload = browserSync.reload;
@@ -25,14 +24,13 @@ gulp.task("compile", function() {
   return gulp.src(["./src/**/*.ts"])
     .pipe($.typescript(tsProject))
     .js
-    .pipe(gulp.dest("./dist/"))
-    .pipe($.concat("ano-gakki.js"));
+    .pipe(gulp.dest("./lib/"));
 });
 
 //////////////////////////////////////////////////
 
-gulp.task("espower", function(callback) {
-  return gulp.src("./test/*.js")
+gulp.task("espower", function() {
+  return gulp.src("./test/src/*.js")
     .pipe($.espower())
     .pipe(gulp.dest("./test/espower/"));
 });
@@ -49,8 +47,8 @@ gulp.task("lint", function() {
 //////////////////////////////////////////////////
 
 gulp.task("test", function(cb) {
-  require("./test/lib/bootstrap.js");
-  gulp.src("./dist/**/*.js")
+  require("./test/bootstrap.js");
+  gulp.src("./lib/**/*.js")
     .pipe($.istanbul())
     .pipe($.istanbul.hookRequire())
     .on("finish", function() {
@@ -66,13 +64,8 @@ gulp.task("test", function(cb) {
 //////////////////////////////////////////////////
 
 gulp.task("browserify", function() {
-  var files = glob.sync("./dist/*.js");
-  var b = browserify({
-    entries: files,
-    debug: true
-  });
-
-  return b.bundle()
+  return browserify("./lib/main.js")
+    .bundle()
     .pipe(source("ano-gakki.js"))
     .pipe(gulp.dest("./dist/"));
 });
@@ -90,7 +83,7 @@ gulp.task("serve", function() {
 
 //////////////////////////////////////////////////
 
-gulp.task('clean', del.bind(null, ["dist/*.js", "test/espower/*.js"]));
+gulp.task('clean', del.bind(null, ["lib/*.js", "test/espower/*.js"]));
 
 //////////////////////////////////////////////////
 
