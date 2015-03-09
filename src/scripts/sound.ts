@@ -4,30 +4,48 @@ class Sound {
     private _ctx: AudioContext;
     private _freqs: number[];
     private _sounds: OscillatorNode[] = [];
+    private _currentPlayIndex: number = 0;
 
     constructor(context: AudioContext, freqs: number[]) {
         this._ctx = context;
         this._freqs = freqs;
-
-        this.createSounds();
     }
 
     get sounds(): OscillatorNode[] {
         return this._sounds;
     }
 
-    public play(sound: OscillatorNode) {
-        sound.connect(this._ctx.destination);
-        sound.start(0);
+    set sounds(oscillatorNodes: OscillatorNode[]) {
+        this._sounds = oscillatorNodes;
     }
 
-    public stop(sound: OscillatorNode) {
+    public play(when: number = 0): Sound {
+        if (this._currentPlayIndex === this._sounds.length) {
+            this._currentPlayIndex = 0;
+            this.destroyOscillatorNodes();
+            this._sounds = this.createOscillatorNodes();
+        }
+
+        var sound = this._sounds[this._currentPlayIndex];
+        sound.connect(this._ctx.destination);
+        sound.start(when);
+
+        return this;
+    }
+
+    public stop(when: number = 0): Sound {
+        var sound = this._sounds[this._currentPlayIndex];
+
+        this._currentPlayIndex++;
+
         setTimeout(function() {
             sound.stop(0);
-        }, 200);
+        }, when);
+
+        return this;
     }
 
-    public createSounds(): OscillatorNode[] {
+    public createOscillatorNodes(): OscillatorNode[] {
         this._freqs.forEach((freq: number) => {
             this._sounds.push(this._createSound(freq));
         });
@@ -35,7 +53,7 @@ class Sound {
         return this._sounds;
     }
 
-    public destroySounds(): void {
+    public destroyOscillatorNodes(): void {
         this._sounds = [];
     }
 

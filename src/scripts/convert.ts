@@ -9,19 +9,35 @@ class Convert {
         "b"
     ];
 
-    // example:
-    // - "A4" | 440
+    /**
+     * example: "A4" | 440
+     */
     public static getFreq(pitch: string): number {
         return this._noteToFreq(this._keyToNote(pitch));
     }
 
-    // copyright (c) 2014 Daijiro Wachi <daijiro.wachi@gmail.com>
-    // released under the MIT license
-    // https://github.com/watilde/beeplay/blob/master/src/modules/nn.js
-    //
-    // example:
-    // - "A4"  | 69
-    // - "G#9" | "128 is not defined key at MIDI."
+    /**
+     * example: ["A5", "B5"] | [880, 988]
+     */
+    public static scoresToFreqs(scores: string[]): number[] {
+        var freqs: number[] = [];
+
+        scores.forEach((score: string) => {
+            freqs.push(Convert.getFreq(score));
+        });
+
+        return freqs;
+    }
+
+    /**
+     * copyright (c) 2014 Daijiro Wachi <daijiro.wachi@gmail.com>
+     * released under the MIT license
+     * https://github.com/watilde/beeplay/blob/master/src/modules/nn.js
+     *
+     * example:
+     * - "A4"  | 69
+     * - "G#9" | "128 is not defined key at MIDI."
+     */
     private static _keyToNote(key: string): number {
         if (key === "") {
             return;
@@ -41,8 +57,9 @@ class Convert {
         return note;
     }
 
-    // ref:
-    // example: 69 | 440
+    /**
+     * example: 69 | 440
+     */
     private static _noteToFreq(note: number): number {
         if (typeof note !== "number") {
             throw new Error(note + " is not number.");

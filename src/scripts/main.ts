@@ -20,8 +20,6 @@ class Main {
     };
     private _windowSize = { x: 0, y: 0 }
 
-    public currentPlayIndex = 0;
-
     constructor() {
         Main._eventTypes.forEach((type: string) => {
             document.addEventListener(Main._events.start[type], (<any>this), false);
@@ -31,6 +29,7 @@ class Main {
             x: window.innerWidth,
             y: window.innerHeight
         };
+        this._sound.createOscillatorNodes();
         this._shape = new Shape("#shape");
     }
 
@@ -63,7 +62,7 @@ class Main {
         this._sound.play(sounds[this.currentPlayIndex]);
         this._sound.stop(sounds[this.currentPlayIndex]);
 
-        this.currentPlayIndex++;
+        this._sound.play(0).stop(200);
     }
 }
 
