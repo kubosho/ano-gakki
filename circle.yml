@@ -1,15 +1,13 @@
+general:
+  branches:
+    ignore:
+      - gh-pages
+      - /release\/.*/
+
 machine:
+  timezone: Asia/Tokyo
   node:
     version: 0.10.33
-
-checkout:
-  post:
-    - git submodule sync
-    - git submodule update --init
-
-dependencies:
-  pre:
-    - npm run global-setup
 
 test:
   pre:
@@ -18,8 +16,10 @@ test:
   post:
     - $(npm bin)/coveralls < ./coverage/lcov.info
 
-general:
-  branches:
-    ignore:
-      - gh-pages
-      - /release\/.*/
+deployment:
+  production:
+    branch: master
+    commands:
+      - git config --global user.name "kubosho"
+      - git config --global user.email "ta2+github@o2p.jp"
+      - ./.bin/deploy-to-gh-pages.sh
