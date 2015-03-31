@@ -4,7 +4,7 @@ class Sound {
     private _ctx: AudioContext;
     private _freqs: number[];
     private _sounds: OscillatorNode[] = [];
-    private _currentPlayIndex: number = 0;
+    private _currentSound: number = 0;
 
     constructor(context: AudioContext, freqs: number[]) {
         this._ctx = context;
@@ -20,13 +20,13 @@ class Sound {
     }
 
     public play(when: number = 0): Sound {
-        if (this._currentPlayIndex === this._sounds.length) {
-            this._currentPlayIndex = 0;
+        if (this._currentSound === this._sounds.length) {
+            this._currentSound = 0;
             this.destroyOscillatorNodes();
             this._sounds = this.createOscillatorNodes();
         }
 
-        var sound = this._sounds[this._currentPlayIndex];
+        var sound = this._sounds[this._currentSound];
         sound.connect(this._ctx.destination);
         sound.start(when);
 
@@ -34,9 +34,9 @@ class Sound {
     }
 
     public stop(when: number = 0): Sound {
-        var sound = this._sounds[this._currentPlayIndex];
+        var sound = this._sounds[this._currentSound];
 
-        this._currentPlayIndex++;
+        this._currentSound++;
 
         setTimeout(function() {
             sound.stop(0);
