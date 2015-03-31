@@ -10,15 +10,16 @@ var Main = (function () {
         this._data = new Data();
         this._sound = new Sound(this._ctx, this._data.freqs);
         this._windowSize = { x: 0, y: 0 };
-        this.currentPlayIndex = 0;
-        Main._eventTypes.forEach(function (type) {
-            document.addEventListener(Main._events.start[type], _this, false);
-        });
+        this._currentShape = 0;
         this._windowSize = {
             x: window.innerWidth,
             y: window.innerHeight
         };
+        this._sound.createOscillatorNodes();
         this._shape = new Shape("#shape");
+        Main._eventTypes.forEach(function (type) {
+            document.addEventListener(Main._events.start[type], _this, false);
+        });
     }
     Main.prototype.handleEvent = function (evt) {
         switch (evt.type) {
@@ -32,22 +33,20 @@ var Main = (function () {
     };
     Main.prototype._touchStart = function (evt, evtType) {
         var _this = this;
-        var sounds = this._sound.sounds;
         if (evtType === "mouse") {
             evt.preventDefault();
         }
-        if (this.currentPlayIndex === sounds.length) {
-            this.currentPlayIndex = 0;
-            this._sound.destroySounds();
-            sounds = this._sound.createSounds();
-        }
         var linePoints = this._data.getLinePoints(this._windowSize.x, this._windowSize.y);
-        var line = function () { return _this._shape.drawLine(linePoints[_this.currentPlayIndex]); };
+        if (this._currentShape === linePoints.length) {
+            this._currentShape = 0;
+        }
+        var line = function () { return _this._shape.drawLine(linePoints[_this._currentShape]); };
         var circle = function () { return _this._shape.drawCircle(evt.pageX, evt.pageY, 10); };
-        _.sample([line, circle])();
-        this._sound.play(sounds[this.currentPlayIndex]);
-        this._sound.stop(sounds[this.currentPlayIndex]);
-        this.currentPlayIndex++;
+        var rectSize = 100;
+        var rect = function () { return _this._shape.drawRect(evt.pageX - (rectSize / 2), evt.pageY - (rectSize / 2), rectSize); };
+        _.sample([line, circle, rect])();
+        this._currentShape++;
+        this._sound.play(0).stop(200);
     };
     Main._eventTypes = ["touch", "mouse"];
     Main._events = {
@@ -58,9 +57,7 @@ var Main = (function () {
     };
     return Main;
 })();
-document.addEventListener("DOMContentLoaded", function () {
-    new Main();
-}, false);
+document.addEventListener("DOMContentLoaded", function () { return new Main(); }, false);
 
 },{"./context":2,"./data":4,"./shape":5,"./sound":6}],2:[function(require,module,exports){
 var Context = (function () {
@@ -80,6 +77,13 @@ var Convert = (function () {
     }
     Convert.getFreq = function (pitch) {
         return this._noteToFreq(this._keyToNote(pitch));
+    };
+    Convert.scoresToFreqs = function (scores) {
+        var freqs = [];
+        scores.forEach(function (score) {
+            freqs.push(Convert.getFreq(score));
+        });
+        return freqs;
     };
     Convert._keyToNote = function (key) {
         if (key === "") {
@@ -129,9 +133,18 @@ module.exports = Convert;
 var convert = require("./convert");
 var Data = (function () {
     function Data() {
-        this.freqs = [];
-        this._scoresToFreqs(Data._scores);
+        this.freqs = convert.scoresToFreqs(Data._scores);
     }
+    Object.defineProperty(Data.prototype, "freqs", {
+        get: function () {
+            return Data._freqs;
+        },
+        set: function (freqs) {
+            Data._freqs = freqs;
+        },
+        enumerable: true,
+        configurable: true
+    });
     Data.prototype.getLinePoints = function (baseX, baseY) {
         return [
             [0, (baseY / 2), baseX, (baseY / 2)],
@@ -142,28 +155,29 @@ var Data = (function () {
             [(baseX / 1.8), 0, (baseX / 2.8), baseY]
         ];
     };
-    Data.prototype._scoresToFreqs = function (scores) {
-        var _this = this;
-        scores.forEach(function (score) {
-            _this.freqs.push(convert.getFreq(score));
-        });
-    };
     Data._scores = ["D5", "E5", "G5", "A5", "B5", "G5"];
+    Data._freqs = [];
     return Data;
 })();
 module.exports = Data;
 
 },{"./convert":3}],5:[function(require,module,exports){
 var Shape = (function () {
-    function Shape(parentSelector) {
-        this.snap = Snap(parentSelector);
+    function Shape(parentSelector, windowSize) {
+        if (windowSize === undefined) {
+            this._windowSize = {
+                x: window.innerWidth,
+                y: window.innerHeight
+            };
+        }
+        this._snap = Snap(parentSelector);
     }
     Shape.prototype.drawLine = function (linePoints, duration) {
         if (duration === void 0) { duration = 1000; }
         if (linePoints.length !== 4) {
             return;
         }
-        var line = this.snap.line(linePoints[0], linePoints[1], linePoints[2], linePoints[3]);
+        var line = this._snap.line(linePoints[0], linePoints[1], linePoints[2], linePoints[3]);
         line.attr({
             stroke: "#51917a",
             strokeWidth: 10
@@ -176,17 +190,34 @@ var Shape = (function () {
     };
     Shape.prototype.drawCircle = function (x, y, radius, duration) {
         if (duration === void 0) { duration = 750; }
-        var circle = this.snap.circle(x, y, radius);
+        var circle = this._snap.circle(x, y, radius);
         circle.attr({
             fill: "transparent",
             stroke: "#51917a",
-            strokeWidth: 10,
+            strokeWidth: 10
         }).animate({
-            r: window.innerWidth
+            r: this._windowSize.x
         }, duration, null, function () {
             circle.remove();
         });
         return circle;
+    };
+    Shape.prototype.drawRect = function (x, y, size, duration) {
+        if (size === void 0) { size = 100; }
+        if (duration === void 0) { duration = 750; }
+        var rect = this._snap.rect(x, y, size, size);
+        rect.attr({
+            fill: "transparent",
+            stroke: "#51917a",
+            strokeWidth: 10
+        });
+        this._animationRect(x, y, rect, duration);
+        return rect;
+    };
+    Shape.prototype._animationRect = function (x, y, rect, duration) {
+        rect.animate({
+            transform: "r180," + (x + 50) + "," + (y + 50) + " s" + this._windowSize.x / (x / 2) + ",s" + this._windowSize.y / (y / 2)
+        }, duration, null, function () { return rect.remove(); });
     };
     return Shape;
 })();
@@ -196,34 +227,49 @@ module.exports = Shape;
 var Sound = (function () {
     function Sound(context, freqs) {
         this._sounds = [];
+        this._currentSound = 0;
         this._ctx = context;
         this._freqs = freqs;
-        this.createSounds();
     }
     Object.defineProperty(Sound.prototype, "sounds", {
         get: function () {
             return this._sounds;
         },
+        set: function (oscillatorNodes) {
+            this._sounds = oscillatorNodes;
+        },
         enumerable: true,
         configurable: true
     });
-    Sound.prototype.play = function (sound) {
+    Sound.prototype.play = function (when) {
+        if (when === void 0) { when = 0; }
+        if (this._currentSound === this._sounds.length) {
+            this._currentSound = 0;
+            this.destroyOscillatorNodes();
+            this._sounds = this.createOscillatorNodes();
+        }
+        var sound = this._sounds[this._currentSound];
         sound.connect(this._ctx.destination);
-        sound.start(0);
+        sound.start(when);
+        return this;
     };
-    Sound.prototype.stop = function (sound) {
+    Sound.prototype.stop = function (when) {
+        if (when === void 0) { when = 0; }
+        var sound = this._sounds[this._currentSound];
+        this._currentSound++;
         setTimeout(function () {
             sound.stop(0);
-        }, 200);
+        }, when);
+        return this;
     };
-    Sound.prototype.createSounds = function () {
+    Sound.prototype.createOscillatorNodes = function () {
         var _this = this;
         this._freqs.forEach(function (freq) {
             _this._sounds.push(_this._createSound(freq));
         });
         return this._sounds;
     };
-    Sound.prototype.destroySounds = function () {
+    Sound.prototype.destroyOscillatorNodes = function () {
         this._sounds = [];
     };
     Sound.prototype._createSound = function (freq) {
