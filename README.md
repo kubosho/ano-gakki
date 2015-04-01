@@ -17,7 +17,7 @@ Setup
 -----
 
 ```shell
-npm run setup
+npm run setup && npm run build
 ```
 
 easily :)
