@@ -1,28 +1,28 @@
 // Snap.svg 0.3.0
-//
+// 
 // Copyright (c) 2013 Adobe Systems Incorporated. All rights reserved.
-//
+// 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-//
+// 
 // http://www.apache.org/licenses/LICENSE-2.0
-//
+// 
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-//
+// 
 // build: 2014-06-03
 // Copyright (c) 2013 Adobe Systems Incorporated. All rights reserved.
-//
+// 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-//
+// 
 // http://www.apache.org/licenses/LICENSE-2.0
-//
+// 
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -184,7 +184,7 @@
         }
         return out;
     };
-
+    
     /*\
      * eve.on
      [ method ]
@@ -199,7 +199,7 @@
      - name (string) name of the event, dot (`.`) or slash (`/`) separated, with optional wildcards
      - f (function) event handler function
      **
-     = (function) returned function accepts a single numeric parameter that represents z-index of the handler. It is an optional feature and only used when you need to ensure that some subset of handlers will be invoked in a given order, despite of the order of assignment.
+     = (function) returned function accepts a single numeric parameter that represents z-index of the handler. It is an optional feature and only used when you need to ensure that some subset of handlers will be invoked in a given order, despite of the order of assignment. 
      > Example:
      | eve.on("mouse", eatIt)(2);
      | eve.on("mouse", scream);
@@ -433,13 +433,13 @@
     }
 }(this, function (window, eve) {
 // Copyright (c) 2013 Adobe Systems Incorporated. All rights reserved.
-//
+// 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-//
+// 
 // http://www.apache.org/licenses/LICENSE-2.0
-//
+// 
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -789,13 +789,13 @@ var mina = (function (eve) {
     return mina;
 })(typeof eve == "undefined" ? function () {} : eve);
 // Copyright (c) 2013 Adobe Systems Incorporated. All rights reserved.
-//
+// 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-//
+// 
 // http://www.apache.org/licenses/LICENSE-2.0
-//
+// 
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -1328,7 +1328,7 @@ prepareRGB = function (r, g, b) {
         g /= 255;
         b /= 255;
     }
-
+    
     return [r, g, b];
 },
 packageRGB = function (r, g, b, o) {
@@ -1568,7 +1568,7 @@ Snap.parsePathString = function (pathString) {
     if (pth.arr) {
         return Snap.path.clone(pth.arr);
     }
-
+    
     var paramCounts = {a: 7, c: 6, o: 2, h: 1, l: 2, m: 2, r: 4, q: 4, s: 4, t: 2, v: 1, u: 3, z: 0},
         data = [];
     if (is(pathString, "array") && is(pathString[0], "array")) { // rough assumption
@@ -3448,13 +3448,13 @@ return Snap;
 }());
 
 // Copyright (c) 2013 Adobe Systems Incorporated. All rights reserved.
-//
+// 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-//
+// 
 // http://www.apache.org/licenses/LICENSE-2.0
-//
+// 
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -3719,7 +3719,7 @@ Snap.plugin(function (Snap, Element, Paper, glob, Fragment) {
                 s.scalex = +s.scalex.toFixed(4);
                 s.scaley = +s.scaley.toFixed(4);
                 s.rotate = +s.rotate.toFixed(4);
-                return  (s.dx || s.dy ? "t" + [+s.dx.toFixed(4), +s.dy.toFixed(4)] : E) +
+                return  (s.dx || s.dy ? "t" + [+s.dx.toFixed(4), +s.dy.toFixed(4)] : E) + 
                         (s.scalex != 1 || s.scaley != 1 ? "s" + [s.scalex, s.scaley, 0, 0] : E) +
                         (s.rotate ? "r" + [+s.rotate.toFixed(4), 0, 0] : E);
             } else {
@@ -3757,13 +3757,13 @@ Snap.plugin(function (Snap, Element, Paper, glob, Fragment) {
     };
 });
 // Copyright (c) 2013 Adobe Systems Incorporated. All rights reserved.
-//
+// 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-//
+// 
 // http://www.apache.org/licenses/LICENSE-2.0
-//
+// 
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -4168,13 +4168,13 @@ Snap.plugin(function (Snap, Element, Paper, glob, Fragment) {
     eve.on("snap.util.getattr.font-size", getFontSize)(-1);
 });
 // Copyright (c) 2013 Adobe Systems Incorporated. All rights reserved.
-//
+// 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-//
+// 
 // http://www.apache.org/licenses/LICENSE-2.0
-//
+// 
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -4257,13 +4257,13 @@ Snap.plugin(function (Snap, Element, Paper, glob, Fragment) {
     })(-10);
 });
 // Copyright (c) 2013 Adobe Systems Incorporated. All rights reserved.
-//
+// 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-//
+// 
 // http://www.apache.org/licenses/LICENSE-2.0
-//
+// 
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -4943,13 +4943,13 @@ Snap.plugin(function (Snap, Element, Paper, glob, Fragment) {
     }());
 });
 // Copyright (c) 2013 Adobe Systems Incorporated. All rights reserved.
-//
+// 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-//
+// 
 // http://www.apache.org/licenses/LICENSE-2.0
-//
+// 
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -5364,7 +5364,7 @@ Snap.plugin(function (Snap, Element, Paper, glob) {
             return box();
         }
         path = path2curve(path);
-        var x = 0,
+        var x = 0, 
             y = 0,
             X = [],
             Y = [],
@@ -5789,7 +5789,7 @@ Snap.plugin(function (Snap, Element, Paper, glob) {
             y: pow(t1, 3) * p1y + pow(t1, 2) * 3 * t * c1y + t1 * 3 * t * t * c2y + pow(t, 3) * p2y
         };
     }
-
+    
     // Returns bounding box of cubic bezier curve.
     // Source: http://blog.hackers-cafe.net/2009/06/how-to-calculate-bezier-curves-bounding.html
     // Original version: NISHIO Hirokazu
@@ -6352,13 +6352,13 @@ Snap.plugin(function (Snap, Element, Paper, glob) {
     Snap.path.clone = pathClone;
 });
 // Copyright (c) 2013 Adobe Systems Incorporated. All rights reserved.
-//
+// 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-//
+// 
 // http://www.apache.org/licenses/LICENSE-2.0
-//
+// 
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -6666,13 +6666,13 @@ Snap.plugin(function (Snap, Element, Paper, glob) {
 });
 
 // Copyright (c) 2013 Adobe Systems Incorporated. All rights reserved.
-//
+// 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-//
+// 
 // http://www.apache.org/licenses/LICENSE-2.0
-//
+// 
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -6838,13 +6838,13 @@ Snap.plugin(function (Snap, Element, Paper, glob) {
     });
 });
 // Copyright (c) 2013 Adobe Systems Incorporated. All rights reserved.
-//
+// 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-//
+// 
 // http://www.apache.org/licenses/LICENSE-2.0
-//
+// 
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -7009,7 +7009,7 @@ Snap.plugin(function (Snap, Element, Paper, glob) {
      - handler (function) handler for the event
      = (object) @Element
     \*/
-
+    
     /*\
      * Element.dblclick
      [ method ]
@@ -7026,7 +7026,7 @@ Snap.plugin(function (Snap, Element, Paper, glob) {
      - handler (function) handler for the event
      = (object) @Element
     \*/
-
+    
     /*\
      * Element.mousedown
      [ method ]
@@ -7043,7 +7043,7 @@ Snap.plugin(function (Snap, Element, Paper, glob) {
      - handler (function) handler for the event
      = (object) @Element
     \*/
-
+    
     /*\
      * Element.mousemove
      [ method ]
@@ -7060,7 +7060,7 @@ Snap.plugin(function (Snap, Element, Paper, glob) {
      - handler (function) handler for the event
      = (object) @Element
     \*/
-
+    
     /*\
      * Element.mouseout
      [ method ]
@@ -7077,7 +7077,7 @@ Snap.plugin(function (Snap, Element, Paper, glob) {
      - handler (function) handler for the event
      = (object) @Element
     \*/
-
+    
     /*\
      * Element.mouseover
      [ method ]
@@ -7094,7 +7094,7 @@ Snap.plugin(function (Snap, Element, Paper, glob) {
      - handler (function) handler for the event
      = (object) @Element
     \*/
-
+    
     /*\
      * Element.mouseup
      [ method ]
@@ -7111,7 +7111,7 @@ Snap.plugin(function (Snap, Element, Paper, glob) {
      - handler (function) handler for the event
      = (object) @Element
     \*/
-
+    
     /*\
      * Element.touchstart
      [ method ]
@@ -7128,7 +7128,7 @@ Snap.plugin(function (Snap, Element, Paper, glob) {
      - handler (function) handler for the event
      = (object) @Element
     \*/
-
+    
     /*\
      * Element.touchmove
      [ method ]
@@ -7145,7 +7145,7 @@ Snap.plugin(function (Snap, Element, Paper, glob) {
      - handler (function) handler for the event
      = (object) @Element
     \*/
-
+    
     /*\
      * Element.touchend
      [ method ]
@@ -7162,7 +7162,7 @@ Snap.plugin(function (Snap, Element, Paper, glob) {
      - handler (function) handler for the event
      = (object) @Element
     \*/
-
+    
     /*\
      * Element.touchcancel
      [ method ]
@@ -7250,8 +7250,8 @@ Snap.plugin(function (Snap, Element, Paper, glob) {
      - mcontext (object) #optional context for moving handler
      - scontext (object) #optional context for drag start handler
      - econtext (object) #optional context for drag end handler
-     * Additionaly following `drag` events are triggered: `drag.start.<id>` on start,
-     * `drag.end.<id>` on end and `drag.move.<id>` on every move. When element is dragged over another element
+     * Additionaly following `drag` events are triggered: `drag.start.<id>` on start, 
+     * `drag.end.<id>` on end and `drag.move.<id>` on every move. When element is dragged over another element 
      * `drag.over.<id>` fires as well.
      *
      * Start event and start handler are called in specified context or in context of the element with following parameters:
@@ -7324,13 +7324,13 @@ Snap.plugin(function (Snap, Element, Paper, glob) {
     };
 });
 // Copyright (c) 2013 Adobe Systems Incorporated. All rights reserved.
-//
+// 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-//
+// 
 // http://www.apache.org/licenses/LICENSE-2.0
-//
+// 
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -7377,7 +7377,7 @@ Snap.plugin(function (Snap, Element, Paper, glob) {
         paper.defs.appendChild(filter);
         return new Element(filter);
     };
-
+    
     eve.on("snap.util.getattr.filter", function () {
         eve.stop();
         var p = $(this.node, "filter");

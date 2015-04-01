@@ -6,7 +6,7 @@ var context = require("./context");
 var Main = (function () {
     function Main() {
         var _this = this;
-        this._ctx = context.create(window);
+        this._ctx = context.create();
         this._data = new Data();
         this._sound = new Sound(this._ctx, this._data.freqs);
         this._windowSize = { x: 0, y: 0 };
@@ -64,6 +64,7 @@ var Context = (function () {
     function Context() {
     }
     Context.create = function (destination) {
+        if (destination === void 0) { destination = window; }
         var AudioCtx = destination.AudioContext || destination.webkitAudioContext;
         return new AudioCtx();
     };

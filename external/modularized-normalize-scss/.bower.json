@@ -3,18 +3,18 @@
   "version": "3.0.2",
   "ignore": [
     "**/.*",
+    "Gruntfile.js",
     "bower.json",
-    "tmp",
-    "package.json",
     "node_modules",
-    "Gruntfile.js"
+    "package.json",
+    "tmp"
   ],
   "homepage": "https://github.com/hail2u/normalize.scss",
   "_release": "3.0.2",
   "_resolution": {
     "type": "version",
     "tag": "v3.0.2",
-    "commit": "091575abcb4578d8665dbc8fe3c5677efaedaf9e"
+    "commit": "90db7730891314b66be58c6e0000a2c3f3e61a62"
   },
   "_source": "git://github.com/hail2u/normalize.scss.git",
   "_target": "~3.0.1",
