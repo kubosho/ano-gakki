@@ -13,12 +13,28 @@ Demo
 
 http://kubosho.github.io/ano-gakki
 
+Setup
+-----
+
+```shell
+npm run setup
+```
+
+easily :)
+
+Show demo in localhost
+----
+
+```shell
+npm run serve
+```
+
 License
 -------
 
-MIT License
+[MIT License](LICENSE)
 
 Author
 ------
 
-[kubosho_ (Shota Kubota)](https://github.com/kubosho)
+[kubosho_](https://github.com/kubosho)
