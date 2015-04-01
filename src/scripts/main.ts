@@ -60,10 +60,11 @@ class Main {
         var circle = () => this._shape.drawCircle(evt.pageX, evt.pageY, 10);
         var rectSize = 100;
         var rect = () => this._shape.drawRect(evt.pageX - (rectSize / 2), evt.pageY - (rectSize / 2), rectSize);
-        _.sample([line, circle, rect])();
-        this._currentShape++;
 
         this._sound.play(0).stop(200);
+
+        _.sample([line, circle, rect])();
+        this._currentShape++;
     }
 }
 
