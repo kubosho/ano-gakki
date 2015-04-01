@@ -28,6 +28,7 @@
   },
   "scripts": {
     "setup": "npm install && bower install & dtsm install",
+    "setup-ci": "npm install && bower install",
     "compile": "gulp compile",
     "clean": "gulp clean",
     "copy": "cp -f dist/**/*.js dist",
