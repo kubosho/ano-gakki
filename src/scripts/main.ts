@@ -50,6 +50,9 @@ class Main {
             evt.preventDefault();
         }
 
+        var pageX = evt.pageX;
+        var pageY = evt.pageY;
+
         var linePoints = this._data.getLinePoints(this._windowSize.x, this._windowSize.y);
 
         if (this._currentShape === linePoints.length) {
@@ -57,13 +60,14 @@ class Main {
         }
 
         var line = () => this._shape.drawLine(linePoints[this._currentShape]);
-        var circle = () => this._shape.drawCircle(evt.pageX, evt.pageY, 10);
+        var circle = () => this._shape.drawCircle(pageX, pageY, 10);
         var rectSize = 100;
-        var rect = () => this._shape.drawRect(evt.pageX - (rectSize / 2), evt.pageY - (rectSize / 2), rectSize);
+        var rect = () => this._shape.drawRect(pageX - (rectSize / 2), pageY - (rectSize / 2), rectSize);
+        var triangle = () => this._shape.drawTriangle(pageX, pageY);
 
         this._sound.play(0).stop(200);
 
-        _.sample([line, circle, rect])();
+        _.sample([line, circle, rect, triangle])();
         this._currentShape++;
     }
 }

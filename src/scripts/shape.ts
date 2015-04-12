@@ -14,7 +14,7 @@ class Shape {
         this._snap = Snap(parentSelector);
     }
 
-    public drawLine(linePoints: number[], duration: number = 1000): Snap.Element {
+    public drawLine(linePoints: number[], duration: number = 750): Snap.Element {
         if (linePoints.length !== 4) {
             return;
         }
@@ -23,12 +23,9 @@ class Shape {
         line.attr({
             stroke: "#51917a",
             strokeWidth: 10
-        })
-        .animate({
-            opacity: 0
-        }, duration, null, () => {
-            line.remove();
         });
+
+        this._animationLine(line, duration);
 
         return line;
     }
@@ -39,12 +36,9 @@ class Shape {
             fill: "transparent",
             stroke: "#51917a",
             strokeWidth: 10
-        })
-        .animate({
-            r: this._windowSize.x
-        }, duration, null, () => {
-            circle.remove();
         });
+
+        this._animationCircle(circle, duration);
 
         return circle;
     }
@@ -57,16 +51,52 @@ class Shape {
             strokeWidth: 10
         });
 
-        this._animationRect(x, y, rect, duration);
+        this._animationRect(rect, x, y, duration);
 
         return rect;
     }
 
-    private _animationRect(x: number, y: number, rect: Snap.Element, duration: number): void {
+    public drawTriangle(x: number, y: number, duration: number = 750): Snap.Element {
+        var triangle = this._snap.polygon([x - 70,y + 30, x + 70,y + 30, x,y - 80]);
+        triangle.attr({
+            fill: "transparent",
+            stroke: "#51917a",
+            strokeWidth: 10
+        });
+
+        this._animationTriangle(triangle, x, y, duration);
+
+        return triangle;
+    }
+
+    //////////////////////////////////////////////////
+
+    private _animationLine(line: Snap.Element, duration: number): void {
+        line.animate({
+            opacity: 0
+        }, duration, null,
+        () => line.remove());
+    }
+
+    private _animationCircle(circle: Snap.Element, duration: number): void {
+        circle.animate({
+            r: this._windowSize.x
+        }, duration, null,
+        () => circle.remove());
+    }
+
+    private _animationRect(rect: Snap.Element, x: number, y: number, duration: number): void {
         rect.animate({
-            transform: `r180,${x + 50},${y + 50} s${this._windowSize.x / (x / 2)},s${this._windowSize.y / (y / 2)}`
+            transform: `r180,${x + 50},${y + 50} s${this._windowSize.x / 28},${this._windowSize.y / 28}`
         }, duration, null,
         () => rect.remove());
+    }
+
+    private _animationTriangle(triangle: Snap.Element, x: number, y: number, duration: number): void {
+        triangle.animate({
+            transform: `s${this._windowSize.x / 28},${this._windowSize.y / 28}`
+        }, duration, null,
+        () => triangle.remove());
     }
 }
 

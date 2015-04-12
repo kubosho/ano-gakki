@@ -35,7 +35,7 @@
     "test": "gulp lint && gulp espower && gulp test",
     "browserify": "gulp browserify",
     "build": "npm run copy & npm run clean && npm run compile && npm run test && gulp browserify",
-    "serve": "gulp serve"
+    "start": "gulp serve"
   },
   "private": true
 }
