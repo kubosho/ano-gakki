@@ -36,16 +36,19 @@ var Main = (function () {
         if (evtType === "mouse") {
             evt.preventDefault();
         }
+        var pageX = evt.pageX;
+        var pageY = evt.pageY;
         var linePoints = this._data.getLinePoints(this._windowSize.x, this._windowSize.y);
         if (this._currentShape === linePoints.length) {
             this._currentShape = 0;
         }
         var line = function () { return _this._shape.drawLine(linePoints[_this._currentShape]); };
-        var circle = function () { return _this._shape.drawCircle(evt.pageX, evt.pageY, 10); };
+        var circle = function () { return _this._shape.drawCircle(pageX, pageY, 10); };
         var rectSize = 100;
-        var rect = function () { return _this._shape.drawRect(evt.pageX - (rectSize / 2), evt.pageY - (rectSize / 2), rectSize); };
+        var rect = function () { return _this._shape.drawRect(pageX - (rectSize / 2), pageY - (rectSize / 2), rectSize); };
+        var triangle = function () { return _this._shape.drawTriangle(pageX, pageY); };
         this._sound.play(0).stop(200);
-        _.sample([line, circle, rect])();
+        _.sample([line, circle, rect, triangle])();
         this._currentShape++;
     };
     Main._eventTypes = ["touch", "mouse"];
@@ -174,7 +177,7 @@ var Shape = (function () {
         this._snap = Snap(parentSelector);
     }
     Shape.prototype.drawLine = function (linePoints, duration) {
-        if (duration === void 0) { duration = 1000; }
+        if (duration === void 0) { duration = 750; }
         if (linePoints.length !== 4) {
             return;
         }
@@ -182,11 +185,8 @@ var Shape = (function () {
         line.attr({
             stroke: "#51917a",
             strokeWidth: 10
-        }).animate({
-            opacity: 0
-        }, duration, null, function () {
-            line.remove();
         });
+        this._animationLine(line, duration);
         return line;
     };
     Shape.prototype.drawCircle = function (x, y, radius, duration) {
@@ -196,11 +196,8 @@ var Shape = (function () {
             fill: "transparent",
             stroke: "#51917a",
             strokeWidth: 10
-        }).animate({
-            r: this._windowSize.x
-        }, duration, null, function () {
-            circle.remove();
         });
+        this._animationCircle(circle, duration);
         return circle;
     };
     Shape.prototype.drawRect = function (x, y, size, duration) {
@@ -212,13 +209,39 @@ var Shape = (function () {
             stroke: "#51917a",
             strokeWidth: 10
         });
-        this._animationRect(x, y, rect, duration);
+        this._animationRect(rect, x, y, duration);
         return rect;
     };
-    Shape.prototype._animationRect = function (x, y, rect, duration) {
+    Shape.prototype.drawTriangle = function (x, y, duration) {
+        if (duration === void 0) { duration = 750; }
+        var triangle = this._snap.polygon([x - 70, y + 30, x + 70, y + 30, x, y - 80]);
+        triangle.attr({
+            fill: "transparent",
+            stroke: "#51917a",
+            strokeWidth: 10
+        });
+        this._animationTriangle(triangle, x, y, duration);
+        return triangle;
+    };
+    Shape.prototype._animationLine = function (line, duration) {
+        line.animate({
+            opacity: 0
+        }, duration, null, function () { return line.remove(); });
+    };
+    Shape.prototype._animationCircle = function (circle, duration) {
+        circle.animate({
+            r: this._windowSize.x
+        }, duration, null, function () { return circle.remove(); });
+    };
+    Shape.prototype._animationRect = function (rect, x, y, duration) {
         rect.animate({
-            transform: "r180," + (x + 50) + "," + (y + 50) + " s" + this._windowSize.x / (x / 2) + ",s" + this._windowSize.y / (y / 2)
+            transform: "r180," + (x + 50) + "," + (y + 50) + " s" + this._windowSize.x / 28 + "," + this._windowSize.y / 28
         }, duration, null, function () { return rect.remove(); });
+    };
+    Shape.prototype._animationTriangle = function (triangle, x, y, duration) {
+        triangle.animate({
+            transform: "s" + this._windowSize.x / 28 + "," + this._windowSize.y / 28
+        }, duration, null, function () { return triangle.remove(); });
     };
     return Shape;
 })();
