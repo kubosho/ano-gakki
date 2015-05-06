@@ -1,4 +1,4 @@
-/// <reference path="../../typings/bundle.d.ts" />
+/// <reference path="../typings/bundle.d.ts" />
 
 class Shape {
     private _snap: Snap.Paper;

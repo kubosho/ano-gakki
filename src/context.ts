@@ -1,4 +1,4 @@
-/// <reference path="../../typings/bundle.d.ts" />
+/// <reference path="../typings/bundle.d.ts" />
 
 class Context {
     public static create(destination: any = window): AudioContext {

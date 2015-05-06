@@ -1,5 +1,5 @@
 /*global describe, before, beforeEach, after, afterEach, it, assert */
-var context = require("../../lib/context");
+var context = require("../../src/context");
 
 describe("Context", function() {
   describe(".create", function() {

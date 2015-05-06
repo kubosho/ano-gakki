@@ -1,13 +1,13 @@
 .idea/
 .sass-cache/
-bower_components/
 coverage/
 node_modules/
 test/espower/
 build/
-lib/
-dist/
+dist/external
+dist/*.js
 
 .DS_Store
 tags
 npm-debug.log
+src/*.js

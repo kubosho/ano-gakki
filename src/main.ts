@@ -1,4 +1,4 @@
-/// <reference path="../../typings/bundle.d.ts" />
+/// <reference path="../typings/bundle.d.ts" />
 
 import Data = require("./data");
 import Shape = require("./shape");

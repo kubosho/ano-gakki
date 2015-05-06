@@ -11,7 +11,7 @@
     "dtsm": "^0.6.2",
     "espower-loader": "^0.10.0",
     "gulp": "^3.8.10",
-    "gulp-concat": "^2.4.2",
+    "gulp-eslint": "^0.11.1",
     "gulp-espower": "^0.10.0",
     "gulp-istanbul": "^0.6.0",
     "gulp-jshint": "^1.9.0",
@@ -31,10 +31,9 @@
     "setup-ci": "npm install && bower install",
     "compile": "gulp compile",
     "clean": "gulp clean",
-    "copy": "cp -f ./src/*.* ./dist/",
-    "test": "gulp lint && gulp espower && gulp test",
+    "test": "gulp espower && gulp test",
     "browserify": "gulp browserify",
-    "build": "npm run copy & npm run clean && npm run compile && npm run test && gulp browserify",
+    "build": "gulp build",
     "start": "gulp serve"
   },
   "private": true

@@ -1,0 +1,28 @@
+{
+    "version": "1.4.1",
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "noImplicitAny": true,
+        "removeComments": true,
+        "preserveConstEnums": true
+    },
+    "filesGlob": [
+        "./**/*.ts",
+        "!./node_modules/**/*.ts"
+    ],
+    "files": [
+        "./src/context.ts",
+        "./src/convert.ts",
+        "./src/data.ts",
+        "./src/main.ts",
+        "./src/shape.ts",
+        "./src/sound.ts",
+        "./typings/bundle.d.ts",
+        "./typings/lodash/lodash.d.ts",
+        "./typings/snapsvg/snapsvg.d.ts",
+        "./typings/webaudioapi/waa.d.ts",
+        "./typings/webrtc/MediaStream.d.ts",
+        "./typings/window-size.d.ts"
+    ]
+}
