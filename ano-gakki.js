@@ -42,7 +42,7 @@ var Main = (function () {
             this._currentShape = 0;
         }
         var angles = this._data.lineAngle;
-        var line = function () { return _this._shape.drawLine([-_this._windowSize.x, pageY, _this._windowSize.x, pageY], pageX, pageY, angles[_this._currentShape]); };
+        var line = function () { return _this._shape.drawLine([-_this._windowSize.x * 3, pageY, _this._windowSize.x * 3, pageY], pageX, pageY, angles[_this._currentShape]); };
         var circle = function () { return _this._shape.drawCircle(pageX, pageY, 10); };
         var rectSize = 100;
         var rect = function () { return _this._shape.drawRect(pageX - (rectSize / 2), pageY - (rectSize / 2), rectSize); };

@@ -58,7 +58,7 @@ class Main {
         }
 
         var angles = this._data.lineAngle;
-        var line = () => this._shape.drawLine([-this._windowSize.x, pageY, this._windowSize.x, pageY], pageX, pageY, angles[this._currentShape]);
+        var line = () => this._shape.drawLine([-this._windowSize.x * 3, pageY, this._windowSize.x * 3, pageY], pageX, pageY, angles[this._currentShape]);
         var circle = () => this._shape.drawCircle(pageX, pageY, 10);
         var rectSize = 100;
         var rect = () => this._shape.drawRect(pageX - (rectSize / 2), pageY - (rectSize / 2), rectSize);
