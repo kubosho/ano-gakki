@@ -38,11 +38,11 @@ var Main = (function () {
         }
         var pageX = evt.pageX;
         var pageY = evt.pageY;
-        var linePoints = this._data.getLinePoints(this._windowSize.x, this._windowSize.y);
-        if (this._currentShape === linePoints.length) {
+        if (this._currentShape === this._data.freqs.length) {
             this._currentShape = 0;
         }
-        var line = function () { return _this._shape.drawLine(linePoints[_this._currentShape]); };
+        var angles = this._data.lineAngle;
+        var line = function () { return _this._shape.drawLine([-_this._windowSize.x, pageY, _this._windowSize.x, pageY], pageX, pageY, angles[_this._currentShape]); };
         var circle = function () { return _this._shape.drawCircle(pageX, pageY, 10); };
         var rectSize = 100;
         var rect = function () { return _this._shape.drawRect(pageX - (rectSize / 2), pageY - (rectSize / 2), rectSize); };
@@ -149,17 +149,15 @@ var Data = (function () {
         enumerable: true,
         configurable: true
     });
-    Data.prototype.getLinePoints = function (baseX, baseY) {
-        return [
-            [0, (baseY / 2), baseX, (baseY / 2)],
-            [(baseX / 3.6), 0, (baseX / 3.6), baseY],
-            [(baseX / 1.25), 0, (baseX / 10), baseY],
-            [(baseX / 3.9), 0, (baseX / 1.5), baseY],
-            [0, (baseY / 4), baseX, (baseY / 4)],
-            [(baseX / 1.8), 0, (baseX / 2.8), baseY]
-        ];
-    };
+    Object.defineProperty(Data.prototype, "lineAngle", {
+        get: function () {
+            return Data._lineAngle;
+        },
+        enumerable: true,
+        configurable: true
+    });
     Data._scores = ["D5", "E5", "G5", "A5", "B5", "G5"];
+    Data._lineAngle = [0, 90, 45, 130, 0, 70];
     Data._freqs = [];
     return Data;
 })();
@@ -176,7 +174,7 @@ var Shape = (function () {
         }
         this._snap = Snap(parentSelector);
     }
-    Shape.prototype.drawLine = function (linePoints, duration) {
+    Shape.prototype.drawLine = function (linePoints, basePointX, basePointY, angle, duration) {
         if (duration === void 0) { duration = 750; }
         if (linePoints.length !== 4) {
             return;
@@ -186,7 +184,7 @@ var Shape = (function () {
             stroke: "#51917a",
             strokeWidth: 10
         });
-        this._animationLine(line, duration);
+        this._animationLine(line, basePointX, basePointY, angle, duration);
         return line;
     };
     Shape.prototype.drawCircle = function (x, y, radius, duration) {
@@ -223,8 +221,8 @@ var Shape = (function () {
         this._animationTriangle(triangle, x, y, duration);
         return triangle;
     };
-    Shape.prototype._animationLine = function (line, duration) {
-        line.animate({
+    Shape.prototype._animationLine = function (line, basePointX, basePointY, angle, duration) {
+        line.transform("r" + angle + ", " + basePointX + ", " + basePointY).animate({
             opacity: 0
         }, duration, null, function () { return line.remove(); });
     };
