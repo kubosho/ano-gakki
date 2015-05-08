@@ -14,7 +14,7 @@ class Shape {
         this._snap = Snap(parentSelector);
     }
 
-    public drawLine(linePoints: number[], duration: number = 750): Snap.Element {
+    public drawLine(linePoints: number[], basePointX: number, basePointY: number, angle: number, duration: number = 750): Snap.Element {
         if (linePoints.length !== 4) {
             return;
         }
@@ -25,7 +25,7 @@ class Shape {
             strokeWidth: 10
         });
 
-        this._animationLine(line, duration);
+        this._animationLine(line, basePointX, basePointY, angle, duration);
 
         return line;
     }
@@ -57,7 +57,8 @@ class Shape {
     }
 
     public drawTriangle(x: number, y: number, duration: number = 750): Snap.Element {
-        var triangle = this._snap.polygon([x - 70,y + 30, x + 70,y + 30, x,y - 80]);
+        // x1, x2, top points
+        var triangle = this._snap.polygon([x - 70, y + 30, x + 70, y + 30, x, y - 80]);
         triangle.attr({
             fill: "transparent",
             stroke: "#51917a",
@@ -71,8 +72,9 @@ class Shape {
 
     //////////////////////////////////////////////////
 
-    private _animationLine(line: Snap.Element, duration: number): void {
-        line.animate({
+    private _animationLine(line: Snap.Element, basePointX: number, basePointY: number, angle: number, duration: number): void {
+        line.transform(`r${angle}, ${basePointX}, ${basePointY}`)
+        .animate({
             opacity: 0
         }, duration, null,
         () => line.remove());

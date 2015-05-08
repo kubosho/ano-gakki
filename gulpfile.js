@@ -71,7 +71,7 @@ gulp.task("serve", function() {
     server: "./dist/"
   });
 
-  gulp.watch(["./src/**/*.ts"], ["compile", "lint", "browserify", reload]);
+  gulp.watch(["./src/**/*.ts"], ["compile", "browserify", reload]);
 });
 
 //////////////////////////////////////////////////

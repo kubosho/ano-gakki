@@ -53,13 +53,12 @@ class Main {
         var pageX = evt.pageX;
         var pageY = evt.pageY;
 
-        var linePoints = this._data.getLinePoints(this._windowSize.x, this._windowSize.y);
-
-        if (this._currentShape === linePoints.length) {
+        if (this._currentShape === this._data.freqs.length) {
             this._currentShape = 0;
         }
 
-        var line = () => this._shape.drawLine(linePoints[this._currentShape]);
+        var angles = this._data.lineAngle;
+        var line = () => this._shape.drawLine([-this._windowSize.x, pageY, this._windowSize.x, pageY], pageX, pageY, angles[this._currentShape]);
         var circle = () => this._shape.drawCircle(pageX, pageY, 10);
         var rectSize = 100;
         var rect = () => this._shape.drawRect(pageX - (rectSize / 2), pageY - (rectSize / 2), rectSize);
