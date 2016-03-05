@@ -24,5 +24,8 @@
         "./typings/webaudioapi/waa.d.ts",
         "./typings/webrtc/MediaStream.d.ts",
         "./typings/window-size.d.ts"
-    ]
+    ],
+    "atom": {
+        "rewriteTsconfig": true
+    }
 }

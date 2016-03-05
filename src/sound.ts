@@ -38,7 +38,7 @@ class Sound {
 
         this._currentSound++;
 
-        setTimeout(function() {
+        setTimeout(() => {
             sound.stop(0);
         }, when);
 
